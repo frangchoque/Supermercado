@@ -20,6 +20,8 @@ public:
 	string MejorCajaTickets(tm Fecha);
 	void Recolectar();
 	void SacarCaja(unsigned int ID);
+	string to_string();
+	void Imprimir();
 
 private:
 	bool Abierto;

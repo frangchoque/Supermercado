@@ -6,8 +6,11 @@ class cItem
 
 public:
 	cItem();
-	virtual ~cItem();
+	~cItem();
 	cArticulo* articulo;
+
+	string to_string();
+	void Imprimir();
 
 private:
 	unsigned int Cantidad;

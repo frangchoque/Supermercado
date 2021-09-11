@@ -1,12 +1,13 @@
 #pragma once
-
+#include <string>
+using namespace std;
 class cTicket;
 
 class cCaja
 {
 public:
 	cCaja();
-	virtual ~cCaja();
+	~cCaja();
 	
 
 	void Abrir();
@@ -14,6 +15,8 @@ public:
 	void Cerrar();
 	cTicket* CrearTicket();
 	void EmitirTicket();
+	string to_string();
+	void Imprimir();
 
 private:
 	bool Abierto;

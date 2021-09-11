@@ -54,3 +54,12 @@ void cSupermercado::Recolectar() {
 void cSupermercado::SacarCaja(unsigned int ID) {
 
 }
+
+string cSupermercado::to_string()
+{
+	return string();
+}
+
+void cSupermercado::Imprimir()
+{
+}

@@ -6,11 +6,13 @@ class cTicket
 {
 public:
 	cTicket();
-	virtual ~cTicket();
+	~cTicket();
 	cListaItems* Items;
 
 	void CrearArticulo();//¿Pasarle un articulo y la cantidad?
 	void SacarArticulo();
+	string to_string();
+	void Imprimir();
 
 private:
 	bool Efectivo;

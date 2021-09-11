@@ -30,7 +30,7 @@ void cCaja::Cerrar() {
 }
 
 
-cTicket cCaja::CrearTicket() {
+cTicket* cCaja::CrearTicket() {
 
 	return  NULL;
 }
@@ -38,4 +38,13 @@ cTicket cCaja::CrearTicket() {
 
 void cCaja::EmitirTicket() {
 
+}
+
+string cCaja::to_string()
+{
+	return string();
+}
+
+void cCaja::Imprimir()
+{
 }
