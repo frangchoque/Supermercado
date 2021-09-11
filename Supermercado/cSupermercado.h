@@ -11,7 +11,6 @@ public:
 	cSupermercado();
 	~cSupermercado();
 
-	cListaCajas* Lista_cajas;
 	void Abrir();
 	void AgregarCaja(cCaja* nueva);
 	void BuscarCaja(unsigned int ID);
@@ -27,5 +26,6 @@ private:
 	bool Abierto;
 	float DineroBanco;
 	float DineroCajaFuerte;
+	cListaCajas* Lista_cajas;
 };
 

@@ -7,7 +7,6 @@ class cTicket
 public:
 	cTicket();
 	~cTicket();
-	cListaItems* Items;
 
 	void CrearArticulo();//¿Pasarle un articulo y la cantidad?
 	void SacarArticulo();
@@ -19,5 +18,6 @@ private:
 	tm FechayHora;
 	unsigned int ID;
 	float MontoTotal;
+	cListaItems* Items;
 };
 

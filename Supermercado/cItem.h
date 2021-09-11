@@ -5,9 +5,8 @@ class cItem
 {
 
 public:
-	cItem();
+	cItem(unsigned int Cantidad, cArticulo* articulo);
 	~cItem();
-	cArticulo* articulo;
 
 	string to_string();
 	void Imprimir();
@@ -15,5 +14,6 @@ public:
 private:
 	unsigned int Cantidad;
 	float PrecioTotal;
+	cArticulo* Articulo;
 };
 

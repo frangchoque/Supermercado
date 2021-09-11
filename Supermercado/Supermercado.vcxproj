@@ -144,6 +144,7 @@
     <ClCompile Include="cItem.cpp" />
     <ClCompile Include="cListaCajas.cpp" />
     <ClCompile Include="cListaItems.cpp" />
+    <ClCompile Include="cListaTickets.cpp" />
     <ClCompile Include="cSupermercado.cpp" />
     <ClCompile Include="cTicket.cpp" />
     <ClCompile Include="main.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="cItem.h" />
     <ClInclude Include="cListaCajas.h" />
     <ClInclude Include="cListaItems.h" />
+    <ClInclude Include="cListaTickets.h" />
     <ClInclude Include="cSupermercado.h" />
     <ClInclude Include="cTicket.h" />
   </ItemGroup>

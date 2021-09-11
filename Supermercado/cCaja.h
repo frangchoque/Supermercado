@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "cListaTickets.h"
 using namespace std;
 class cTicket;
 
@@ -22,7 +23,7 @@ private:
 	bool Abierto;
 	float DineroenCaja;
 	float DineroRecaudado;
-	const unsigned int ID;
-
+	static unsigned int ID;//Cambiar en el UML
+	cListaTickets* Tickets;
 };
 

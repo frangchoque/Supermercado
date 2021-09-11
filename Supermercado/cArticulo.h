@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+class cItem;
 using namespace std;
 
 class cArticulo
@@ -17,5 +18,6 @@ private:
 	string Marca;
 	string Nombre;
 	float PrecioUnitario;
+	friend class cItem;//Clase friend
 };
 
