@@ -7,6 +7,12 @@ using namespace std;
 
 class cSupermercado
 {
+private:
+	bool Abierto;
+	float DineroBanco;
+	float DineroCajaFuerte;
+	cListaCajas* Lista_cajas;
+
 public:
 	cSupermercado();
 	~cSupermercado();
@@ -22,10 +28,6 @@ public:
 	string to_string();
 	void Imprimir();
 
-private:
-	bool Abierto;
-	float DineroBanco;
-	float DineroCajaFuerte;
-	cListaCajas* Lista_cajas;
+
 };
 

@@ -31,3 +31,8 @@ string cTicket::to_string()
 void cTicket::Imprimir()
 {
 }
+
+int cTicket::getID()
+{
+    return ID;
+}

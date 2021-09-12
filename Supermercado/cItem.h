@@ -3,6 +3,10 @@
 
 class cItem
 {
+private:
+	unsigned int Cantidad;
+	float PrecioTotal;
+	cArticulo* Articulo;
 
 public:
 	cItem(unsigned int Cantidad, cArticulo* articulo);
@@ -11,9 +15,6 @@ public:
 	string to_string();
 	void Imprimir();
 
-private:
-	unsigned int Cantidad;
-	float PrecioTotal;
-	cArticulo* Articulo;
+
 };
 
