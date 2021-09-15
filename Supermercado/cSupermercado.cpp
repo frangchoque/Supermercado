@@ -1,7 +1,10 @@
 #include "cSupermercado.h"
 
 cSupermercado::cSupermercado() {
-
+	this->Abierto = true;
+	this->DineroBanco = 1000;
+	this->DineroCajaFuerte = 5000;
+	
 }
 
 

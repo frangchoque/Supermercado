@@ -10,6 +10,9 @@ class cListaItems
 
 public:
 	cListaItems(unsigned int TAM = N);
+	//ostream& operator <<(ostream& out,const cItem&i);
+	cTicket* operator[](int pos);//tiene que estar en todas las listas
+	int BuscarArt(cArticulo*art);//o string nombre de articulo 
 	~cListaItems();
 
 
