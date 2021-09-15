@@ -10,6 +10,8 @@ class cListaTickets
 public:
 	cListaTickets(int Tam=N);
 	void EliminarTicket(int  id);
+	cTicket* operator[](int pos);
+	int BuscarID(int id);
 	void AgregarTicket(cTicket* ticket);
 	void ListarTickets();
 	~cListaTickets();
