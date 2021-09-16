@@ -1,21 +1,23 @@
 #include "cCaja.h"
 
-cCaja::cCaja() {
-
+cCaja::cCaja(float DineroCaja):ID(Contador)
+{
+	Abierto = false;
+	DineroenCaja = DineroCaja;
+	DineroRecaudado = 0;
+	Tickets = new cListaTickets();
+	Contador++;
 }
-
+unsigned int cCaja::Contador = 1;
 
 
 cCaja::~cCaja() {
-
+	delete Tickets;
 }
 
 
-
-
-
 void cCaja::Abrir() {
-
+	Abierto = true;
 }
 
 
@@ -26,7 +28,7 @@ float cCaja::CalcularGanancia() {
 
 
 void cCaja::Cerrar() {
-
+	Abierto = false;
 }
 
 

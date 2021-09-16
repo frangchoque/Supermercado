@@ -76,5 +76,14 @@ void cListaTickets::ListarTickets()
 
 cListaTickets::~cListaTickets()
 {
+	if (ticket != NULL)
+	{
+		for (int i = 0; i < Cupo; i++)
+		{
+			if (ticket[i] != NULL)
+				delete ticket[i];
+		}
+		delete[] ticket;
+	}
 }
 

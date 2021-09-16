@@ -7,7 +7,7 @@ class cTicket;
 class cCaja
 {
 public:
-	cCaja();
+	cCaja(float DineroCaja = 1000);
 	~cCaja();
 	
 
@@ -23,7 +23,8 @@ private:
 	bool Abierto;
 	float DineroenCaja;
 	float DineroRecaudado;
-	static unsigned int ID;//Cambiar en el UML
+	const unsigned int ID;//Cambiar en el UML
+	static unsigned int Contador;
 	cListaTickets* Tickets;
 };
 

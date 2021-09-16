@@ -56,7 +56,7 @@ void cListaItems::Agregar(cItem* Nuevo)
 	if (pos >= 0)
 		throw new exception("El item ya se encuentra en la lista");
 	if (CA == TAM)
-		Redimensionar();
+		Redimensionalizar();
 	Lista[CA++] = Nuevo;
 	return;
 }
