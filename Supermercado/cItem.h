@@ -14,7 +14,7 @@ public:
 
 	string to_string();
 	void Imprimir();
-
+	unsigned int getArticuloID();
 
 };
 

@@ -22,3 +22,8 @@ void cItem::Imprimir()
 {
     cout << to_string() << endl;
 }
+
+unsigned int cItem::getArticuloID()
+{
+    return this->Articulo->ID;
+}
