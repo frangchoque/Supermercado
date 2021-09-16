@@ -28,6 +28,27 @@ cListaCajas::~cListaCajas()
 	}
 }
 
+int cListaCajas::PosCaja(unsigned int id)
+{
+	for (int i = 0; i < Cupo; i++) {
+		if (cajas[i]->getID() == id)return i;
+	}
+}
+
+void cListaCajas::Eliminar(cCaja* caja){
+	if (caja != NULL) {
+		int pos = PosCaja(caja->getID());
+		 cajas[pos]=NULL;
+		cCaja* c = NULL;
+		for (int i = pos; i < Cupo - 1; i++) {
+			c = cajas[i];
+			cajas[i] = cajas[i + 1];
+			cajas[i + 1] = c;
+		}
+		Cupo--;
+	}
+}
+
 void cListaCajas::AgregarCaja(cCaja*caja)
 {
 	if (cajas != NULL) {

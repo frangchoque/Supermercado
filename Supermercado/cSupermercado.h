@@ -25,7 +25,7 @@ public:
 	string MejorCajaGanancias(tm Fecha);
 	string MejorCajaTickets(tm Fecha);
 	void Recolectar();
-	void SacarCaja(unsigned int ID);
+	void SacarCaja(cCaja*caja);
 	string to_string();
 	void Imprimir();
 

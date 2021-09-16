@@ -15,14 +15,15 @@ cListaTickets::cListaTickets(int Tam)
 void cListaTickets::EliminarTicket(int id)
 {
 	if (ticket != NULL) {
-
+		cTicket* aux = NULL;
 		int pos = BuscarID(id);
 		if (pos != -1)
 		{
 			ticket[pos] = NULL;
-			for (int i = pos; i < Cupo; i++) {
+			for (int i = pos; i < Cupo-1; i++) {
+				aux = ticket[i];
 				ticket[i] = ticket[i + 1];
-				
+				ticket[i + 1] = aux;
 			}
 			Cupo--;
 		}

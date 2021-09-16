@@ -70,11 +70,10 @@ void cSupermercado::Recolectar() {
 }
 
 
-void cSupermercado::SacarCaja(unsigned int ID) {
-	cCaja* aux = NULL;
-	aux = Lista_cajas.BuscarIDcaja(ID);
-	if (aux == NULL) { throw exception("no se encontro la caja"); }
-	delete aux;
+void cSupermercado::SacarCaja(cCaja*caja) {
+	
+	if(caja!=NULL)
+		Lista_cajas.Eliminar(caja);
 
 }
 
