@@ -4,12 +4,16 @@ cSupermercado::cSupermercado() {
 	this->Abierto = true;
 	this->DineroBanco = 1000;
 	this->DineroCajaFuerte = 5000;
-	
+	//Lista_cajas = cListaCajas(Lista_cajas.Tam);
 }
 
 
 
 cSupermercado::~cSupermercado() {
+
+
+
+
 
 }
 
@@ -18,34 +22,46 @@ cSupermercado::~cSupermercado() {
 
 
 void cSupermercado::Abrir() {
-
+	if (Abierto == false)
+		Abierto = true;
 }
 
 
 void cSupermercado::AgregarCaja(cCaja* nueva) {
-
+	if (nueva != NULL) {
+		cCaja* aux = NULL;
+		aux= Lista_cajas.BuscarIDcaja(nueva->getID());
+		if (aux != NULL) { throw exception("la caja ya existe"); }
+		Lista_cajas.AgregarCaja(nueva);
+		
+	}
 }
 
 
-void cSupermercado::BuscarCaja(unsigned int ID) {
-
+cCaja* cSupermercado::BuscarCaja(unsigned int ID) {
+	 
+	cCaja* aux = NULL;
+	aux=Lista_cajas.BuscarIDcaja(ID);
+	if (aux == NULL) { throw exception("no se encontro la caja"); }
+	return aux;
 }
 
 
 void cSupermercado::Cerrar() {
 
+	if (Abierto == true)Abierto = false;
 }
 
 
 string cSupermercado::MejorCajaGanancias(tm Fecha) {
 
-	return  NULL;
+	
 }
 
 
 string cSupermercado::MejorCajaTickets(tm Fecha) {
 
-	return  NULL;
+	
 }
 
 
@@ -55,6 +71,10 @@ void cSupermercado::Recolectar() {
 
 
 void cSupermercado::SacarCaja(unsigned int ID) {
+	cCaja* aux = NULL;
+	aux = Lista_cajas.BuscarIDcaja(ID);
+	if (aux == NULL) { throw exception("no se encontro la caja"); }
+	delete aux;
 
 }
 

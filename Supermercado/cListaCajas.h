@@ -1,16 +1,22 @@
 #pragma once
-#include "cCaja.h"
 #include <string>
+#include "cCaja.h"
+
 using namespace std;
 
 class cListaCajas
 {
-	int Tam = 5,Cupo=0;
-	cListaCajas* cajas;
+	friend class cSupermercado;
+	int Tam, Cupo;
+	cCaja** cajas;
 
 public:
-	cListaCajas();
-	cListaCajas* operator[](int pos);
+	cListaCajas(int tam);
+	cCaja* operator[](int pos);
+	cCaja* BuscarIDcaja(unsigned int id);
+	//unsigned int IDcajas(cCaja*caja);
+	void AgregarCaja(cCaja*caja);
+	cCaja* Eliminar(cCaja*caja);
 	~cListaCajas();
 };
 

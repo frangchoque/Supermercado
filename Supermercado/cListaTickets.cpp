@@ -34,7 +34,7 @@ void cListaTickets::EliminarTicket(int id)
 
 cTicket* cListaTickets::operator[](int pos)
 {
-	if (pos < Cupo)
+	if (pos <= Cupo)
 	{
 		return ticket[pos];
 	}

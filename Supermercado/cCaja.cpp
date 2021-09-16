@@ -5,14 +5,14 @@ cCaja::cCaja(float DineroCaja):ID(Contador)
 	Abierto = false;
 	DineroenCaja = DineroCaja;
 	DineroRecaudado = 0;
-	Tickets = new cListaTickets();
+	Tickets = new cListaTickets(); 
 	Contador++;
 }
 unsigned int cCaja::Contador = 1;
 
 
 cCaja::~cCaja() {
-	delete Tickets;
+	//delete Tickets;
 }
 
 
@@ -49,4 +49,9 @@ string cCaja::to_string()
 
 void cCaja::Imprimir()
 {
+}
+
+unsigned int cCaja::getID()
+{
+	return ID;
 }

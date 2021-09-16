@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include "cListaCajas.h"
-class cCaja;
+//#include "cCaja.h"
+//class cCaja;
 using namespace std;
 
 
@@ -19,7 +20,7 @@ public:
 
 	void Abrir();
 	void AgregarCaja(cCaja* nueva);
-	void BuscarCaja(unsigned int ID);
+	cCaja*BuscarCaja(unsigned int ID);
 	void Cerrar();
 	string MejorCajaGanancias(tm Fecha);
 	string MejorCajaTickets(tm Fecha);
