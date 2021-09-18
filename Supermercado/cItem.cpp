@@ -43,3 +43,10 @@ float cItem::getPrecio()
 {
     return PrecioTotal;
 }
+
+void cItem::setCantArticulo(unsigned int cant)
+{
+    Cantidad = Cantidad + cant;
+}
+
+

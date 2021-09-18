@@ -42,7 +42,7 @@ void cCaja::CrearTicket() {
 
 cTicket* cCaja::getTicketLista(cTicket*ticket)//Para que podamos trabajar con uno en particular
 { 
-	cTicket* aux;
+	cTicket* aux=new cTicket;
 	int pos = Tickets->BuscarID(ticket->getID());//busca en la lista de tickets el ticket con ese ID y devuelve la posicion
 	aux = Tickets->operator[](pos);//retorno el ticket en esa posicion
 	return aux;
@@ -80,9 +80,9 @@ void cCaja::AgregarItem(cTicket* ticket,cItem* Nuevo, unsigned int Cantidad)
 		int pos = Tickets->BuscarID(ticket->getID());
 		
 		if (Nuevo != NULL) { 
-			cTicket* aux;
+			cTicket* aux= new cTicket;
+			aux = Tickets->operator[](pos);
 			if (aux->getAbonado() != true) {
-				aux = Tickets->operator[](pos);
 				aux->CrearItem(Nuevo, Cantidad);
 			}
 		}

@@ -65,7 +65,7 @@ int cListaItems::BuscarPosItemCreado(unsigned int ID, unsigned int Cantidad)
 	return pos;
 }
 
-void cListaItems::Agregar(cItem* Nuevo)
+void cListaItems::Agregar(cItem* Nuevo,int cantidad)
 {
 	if (Nuevo==NULL)
 		throw new exception("Error");
@@ -74,6 +74,27 @@ void cListaItems::Agregar(cItem* Nuevo)
 		//throw new exception("El item ya se encuentra en la lista");
 	
 	//Permito elementos repetidos porque puede suceder que compre repetidas veces el mismo producto con la misma cantidad
+	//si, esta hecho abajo fijate si esta bien 
+	if (Nuevo != NULL) {
+		int encontro = 0;
+		if (TAM > CA) {
+			for (int i = 0; i < CA; i++) {
+				if (Lista[i]->getArticuloID() == Nuevo->getArticuloID()) {
+					Lista[i]->setCantArticulo(cantidad);
+					encontro = 1;//el articulo ya esta en el ticket 
+				}
+			}
+			if (encontro == 0) {
+				//el articulo no esta en el ticket entonces lo agrego 
+				Nuevo[CA + 1] = *Nuevo;
+				CA++;
+			}
+		}
+		if (CA > TAM || CA == TAM) { throw exception("La lista esta llena"); }
+	}
+
+
+
 	if (CA == TAM)
 		Redimensionalizar();
 	Lista[CA++] = Nuevo;

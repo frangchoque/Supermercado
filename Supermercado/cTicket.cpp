@@ -20,7 +20,7 @@ cTicket::~cTicket() {
 
 
 void cTicket::CrearItem(cItem* Nuevo, unsigned int Cantidad) {
-    Items->Agregar(Nuevo);
+    Items->Agregar(Nuevo,Cantidad);
     (*Items)[Items->getCA() - 1]->setCantidad(Cantidad);
     CalcularMontoTotal(true, (*Items)[Items->getCA() - 1]->getPrecio());
 }
