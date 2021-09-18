@@ -15,6 +15,8 @@ public:
 	string to_string();
 	void Imprimir();
 	unsigned int getArticuloID();
+	void setCantidad(unsigned int cantidad);
+	unsigned int getCantidad();
 
 };
 

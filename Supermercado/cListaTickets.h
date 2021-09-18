@@ -15,6 +15,6 @@ public:
 	void AgregarTicket(cTicket* ticket);
 	void ListarTickets();
 	~cListaTickets();
-
+	const int getCupo();
 };
 

@@ -32,7 +32,7 @@ cListaItems::cListaItems(unsigned int TAM)
 
 cItem* cListaItems::operator[](unsigned int pos)
 {
-	return this->Buscar(pos);
+	return this->Buscar_por_Pos(pos);
 }
 
 int cListaItems::BuscarPos(unsigned int ID)
@@ -50,22 +50,41 @@ int cListaItems::BuscarPos(unsigned int ID)
 	return pos;
 }
 
+int cListaItems::BuscarPosItemCreado(unsigned int ID, unsigned int Cantidad)
+{
+	int pos = -1, i = 0;
+	for (i = 0; i < TAM; i++)
+	{
+		if (this->Lista[i]->getArticuloID() == ID&&this->Lista[i]->getCantidad()==Cantidad)
+		{
+			pos = i;
+			break;//Salgo apenas lo encuentro
+		}
+	}
+
+	return pos;
+}
+
 void cListaItems::Agregar(cItem* Nuevo)
 {
-	int pos = BuscarPos(Nuevo->getArticuloID());
-	if (pos >= 0)
-		throw new exception("El item ya se encuentra en la lista");
+	if (Nuevo==NULL)
+		throw new exception("Error");
+	//int pos = BuscarPosItemCreado(Nuevo->getArticuloID(), Nuevo->getCantidad());
+	//if (pos >= 0)
+		//throw new exception("El item ya se encuentra en la lista");
+	
+	//Permito elementos repetidos porque puede suceder que compre repetidas veces el mismo producto con la misma cantidad
 	if (CA == TAM)
 		Redimensionalizar();
 	Lista[CA++] = Nuevo;
 	return;
 }
 
-void cListaItems::Eliminar(unsigned int ID)
+void cListaItems::Eliminar(unsigned int ID, unsigned int Cantidad)
 {
 	cItem* aux = NULL;
 	try {
-		aux = Quitar(ID);
+		aux = Quitar(ID, Cantidad);
 	}
 	catch(exception* error){
 		throw error;
@@ -74,7 +93,7 @@ void cListaItems::Eliminar(unsigned int ID)
 	return;
 }
 
-cItem* cListaItems::Buscar(unsigned int ID)
+cItem* cListaItems::Buscar(unsigned int ID, unsigned int Cantidad)
 {
 	int pos = BuscarPos(ID);
 	if (pos == -1)
@@ -82,10 +101,18 @@ cItem* cListaItems::Buscar(unsigned int ID)
 	return Lista[pos];
 }
 
-cItem* cListaItems::Quitar(unsigned int ID)
+cItem* cListaItems::Buscar_por_Pos(unsigned int pos)
 {
-	int pos = BuscarPos(ID);
-	cItem* aux = Buscar(ID);
+	if (pos >= CA)
+		throw new exception("No se encuentra en la lista");
+	//Siempre va a ser >=0, entonces solo me fijo que el elemento exista en la lista
+	return Lista[pos];
+}
+
+cItem* cListaItems::Quitar(unsigned int ID, unsigned int Cantidad)
+{
+	int pos = BuscarPosItemCreado(ID, Cantidad);
+	cItem* aux = Buscar(ID, Cantidad);//No importa que este repetido, solo que borre el primero que encuentre
 	if (aux == NULL)
 		throw new exception("El elemento no se encuentra en la lista");
 	//Si o si tiene que estar
@@ -106,6 +133,11 @@ cListaItems::~cListaItems()
 		}
 		delete[] Lista;
 	}
+}
+
+unsigned int cListaItems::getCA()
+{
+	return CA;
 }
 
 ostream& operator<<(ostream& out, const cItem& I)

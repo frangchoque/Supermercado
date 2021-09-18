@@ -27,3 +27,14 @@ unsigned int cItem::getArticuloID()
 {
     return this->Articulo->ID;
 }
+
+void cItem::setCantidad(unsigned int cantidad)
+{
+    PrecioTotal = Articulo->PrecioUnitario * cantidad;
+    Cantidad = cantidad;
+}
+
+unsigned int cItem::getCantidad()
+{
+    return Cantidad;
+}

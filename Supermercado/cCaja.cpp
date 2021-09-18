@@ -12,7 +12,7 @@ unsigned int cCaja::Contador = 1;
 
 
 cCaja::~cCaja() {
-	//delete Tickets;
+	delete Tickets;
 }
 
 
@@ -23,7 +23,7 @@ void cCaja::Abrir() {
 
 float cCaja::CalcularGanancia() {
 
-	return 0;
+	return 0;//¿Como? si solo tenemos dinero recaudado
 }
 
 
@@ -32,13 +32,23 @@ void cCaja::Cerrar() {
 }
 
 
-cTicket* cCaja::CrearTicket() {
+void cCaja::CrearTicket() {
+	if (!Abierto)
+		throw new exception("La caja esta cerrada");
+	cTicket* aux = new cTicket();
+	Tickets->AgregarTicket(aux);
+	return;
+}
 
-	return  NULL;
+cTicket* cCaja::getTicketLista(unsigned int ID)//Para que podamos trabajar con uno en particular
+{
+	return Tickets[Tickets->getCupo()-1];//Revisar la sobrecarga
 }
 
 
 void cCaja::EmitirTicket() {
+	if (!Abierto)
+		throw new exception("La caja esta cerrada");
 
 }
 

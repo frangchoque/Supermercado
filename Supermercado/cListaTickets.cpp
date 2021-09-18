@@ -88,3 +88,8 @@ cListaTickets::~cListaTickets()
 	}
 }
 
+const int cListaTickets::getCupo()
+{
+	return Cupo;
+}
+
