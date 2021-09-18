@@ -9,7 +9,7 @@ class cListaItems
 	unsigned int TAM;
 	void Redimensionalizar();
 
-public:
+public://Permitir elementos repetidos puede traer problemas. Pensar como solucionarlos. Se puede solucionar creando una copia del item dentro de la lista para todos los items y que los items que cree en el main los borre en el main.
 	cListaItems(unsigned int TAM = N);
 	friend ostream& operator<<(ostream& out,const cItem& I);//Falta
 	cItem* operator[](unsigned int pos);//tiene que estar en todas las listas
@@ -23,5 +23,6 @@ public:
 	~cListaItems();
 	unsigned int getCA();
 
+	string to_string();
 };
 

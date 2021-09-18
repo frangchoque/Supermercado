@@ -65,3 +65,11 @@ unsigned int cCaja::getID()
 {
 	return ID;
 }
+
+void cCaja::AgregarItem(cItem* Nuevo, unsigned int Cantidad)
+{
+	if (!Abierto)
+		throw new exception("\nLa caja esta cerrada");
+	if()
+	//la caja esté abierta o cerrada y que el ticket no este abonado
+}

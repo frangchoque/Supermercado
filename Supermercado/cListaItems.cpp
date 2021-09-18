@@ -140,6 +140,17 @@ unsigned int cListaItems::getCA()
 	return CA;
 }
 
+string cListaItems::to_string()
+{
+	string aux="\nItems: \n";
+	for (int i = 0; i < CA; i++)
+	{
+		aux += Lista[i]->to_string();
+	}
+
+	return aux;
+}
+
 ostream& operator<<(ostream& out, const cItem& I)
 {
 	

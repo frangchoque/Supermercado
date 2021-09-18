@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Auxiliar.cpp" />
     <ClCompile Include="cArticulo.cpp" />
     <ClCompile Include="cCaja.cpp" />
     <ClCompile Include="cItem.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Auxiliar.h" />
     <ClInclude Include="cArticulo.h" />
     <ClInclude Include="cCaja.h" />
     <ClInclude Include="cItem.h" />

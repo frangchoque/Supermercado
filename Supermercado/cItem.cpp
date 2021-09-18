@@ -38,3 +38,8 @@ unsigned int cItem::getCantidad()
 {
     return Cantidad;
 }
+
+float cItem::getPrecio()
+{
+    return PrecioTotal;
+}

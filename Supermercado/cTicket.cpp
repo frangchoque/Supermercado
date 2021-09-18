@@ -22,23 +22,47 @@ cTicket::~cTicket() {
 void cTicket::CrearArticulo(cItem* Nuevo, unsigned int Cantidad) {
     Items->Agregar(Nuevo);
     (*Items)[Items->getCA() - 1]->setCantidad(Cantidad);
+    CalcularMontoTotal(true, (*Items)[Items->getCA() - 1]->getPrecio());
 }
 
 
 void cTicket::SacarArticulo(unsigned int id, unsigned int cantidad) {
     Items->Eliminar(id, cantidad);
+    CalcularMontoTotal(false, (*Items)[Items->getCA() - 1]->getPrecio());
 }
 
 string cTicket::to_string()
 {
-    return string();
+    string aux = tm_to_string(FechayHora) + "Efectivo: " + bool_to_string(Efectivo) + "\nTarjeta: " + bool_to_string(!Efectivo) + "\nId: " + std::to_string(ID) +
+        "\nMonto total: " + std::to_string(MontoTotal) + Items->to_string() + "\nAbonado: " + std::to_string(Abonado);
+    return aux;
 }
 
 void cTicket::Imprimir()
 {
+    cout << this->to_string() << endl;
 }
 
 int cTicket::getID()
 {
     return ID;
+}
+
+void cTicket::CalcularMontoTotal(bool Agrego, float Monto)
+{
+    //MontoTotal esta inicializado en 0, entonces puedo hacer
+    if (Agrego)
+        MontoTotal += Monto;
+    if (!Agrego)
+        MontoTotal -= Monto;
+}
+
+float cTicket::getMontoTotal()
+{
+    return MontoTotal;
+}
+
+bool cTicket::getAbonado()
+{
+    return Abonado;
 }

@@ -12,7 +12,7 @@ private:
 	float DineroRecaudado;
 	const unsigned int ID;//Cambiar en el UML
 	static unsigned int Contador;
-	cListaTickets* Tickets;
+	cListaTickets* Tickets;//¿Hago que solo pueda trabajar con un ticket a la vez?Si es así, entonces solo puedo trabajar con el último ¿no?
 public:
 	cCaja(float DineroCaja = 1000);
 	~cCaja();
@@ -25,6 +25,8 @@ public:
 	string to_string();
 	void Imprimir();
 	unsigned int getID();
+	void AgregarItem(cItem* Nuevo, unsigned int Cantidad);
+
 	//Crear metodo para agregar items que controle que la caja esté abierta o cerrada y que el ticket no este abonado
 	//Lo mismo con SacarArticulo
 	//Modificar Cerrar para que no pueda hacerlo hast que el último ticket este abonado
