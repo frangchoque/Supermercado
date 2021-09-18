@@ -51,10 +51,10 @@ void cListaCajas::Eliminar(cCaja* caja){
 
 void cListaCajas::AgregarCaja(cCaja*caja)
 {
-	if (cajas != NULL) {
+	if (caja != NULL) {
 
 		if (Tam > Cupo) {
-			cajas[Cupo + 1] = *cajas;
+			cajas[Cupo + 1] = caja;
 			Cupo++;
 		}
 		if (Cupo > Tam || Cupo == Tam) { throw exception("La lista esta llena"); }

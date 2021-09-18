@@ -34,7 +34,7 @@ cItem* cListaItems::operator[](unsigned int pos)
 {
 	return this->Buscar_por_Pos(pos);
 }
-
+ 
 int cListaItems::BuscarPos(unsigned int ID)
 {
 	int pos=-1, i=0;
@@ -81,12 +81,13 @@ void cListaItems::Agregar(cItem* Nuevo,int cantidad)
 			for (int i = 0; i < CA; i++) {
 				if (Lista[i]->getArticuloID() == Nuevo->getArticuloID()) {
 					Lista[i]->setCantArticulo(cantidad);
+					//falta lo del monto
 					encontro = 1;//el articulo ya esta en el ticket 
 				}
 			}
 			if (encontro == 0) {
 				//el articulo no esta en el ticket entonces lo agrego 
-				Nuevo[CA + 1] = *Nuevo;
+				Lista[CA + 1] = Nuevo;
 				CA++;
 			}
 		}

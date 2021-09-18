@@ -12,7 +12,7 @@ public:
 	void EliminarTicket(int  id);
 	cTicket* operator[](int pos);
 	int BuscarID(int id);
-	void AgregarTicket(cTicket* ticket);
+	void AgregarTicket(cTicket* Ticket);
 	void ListarTickets();
 	~cListaTickets();
 	const int getCupo();

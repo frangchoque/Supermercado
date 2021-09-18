@@ -53,12 +53,12 @@ int cListaTickets::BuscarID(int id)
 	}
 }
 
-void cListaTickets::AgregarTicket(cTicket* ticket)
+void cListaTickets::AgregarTicket(cTicket* Ticket)
 {
-	if (ticket != NULL) {
+	if (Ticket != NULL) {
 	
 		if (Tam > Cupo) {
-			ticket[Cupo + 1] = *ticket;//no se porque no lo toma
+			ticket[Cupo + 1] = Ticket;//no se porque no lo toma
 			Cupo++;
 		}
 		if (Cupo > Tam || Cupo == Tam) { throw exception("La lista esta llena"); }
