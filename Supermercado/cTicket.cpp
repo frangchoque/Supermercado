@@ -19,14 +19,14 @@ cTicket::~cTicket() {
 }
 
 
-void cTicket::CrearArticulo(cItem* Nuevo, unsigned int Cantidad) {
+void cTicket::CrearItem(cItem* Nuevo, unsigned int Cantidad) {
     Items->Agregar(Nuevo);
     (*Items)[Items->getCA() - 1]->setCantidad(Cantidad);
     CalcularMontoTotal(true, (*Items)[Items->getCA() - 1]->getPrecio());
 }
 
 
-void cTicket::SacarArticulo(unsigned int id, unsigned int cantidad) {
+void cTicket::SacarItem(unsigned int id, unsigned int cantidad) {
     Items->Eliminar(id, cantidad);
     CalcularMontoTotal(false, (*Items)[Items->getCA() - 1]->getPrecio());
 }

@@ -20,12 +20,12 @@ public:
 	float CalcularGanancia();//La uso para calcular al final de la compra
 	void Cerrar();
 	void CrearTicket();
-	cTicket* getTicketLista(unsigned int ID);
+	cTicket* getTicketLista(cTicket*ticket);
 	void EmitirTicket();
 	string to_string();
 	void Imprimir();
 	unsigned int getID();
-	void AgregarItem(cItem* Nuevo, unsigned int Cantidad);
+	void AgregarItem(cTicket*ticket,cItem* Nuevo, unsigned int Cantidad);
 
 	//Crear metodo para agregar items que controle que la caja esté abierta o cerrada y que el ticket no este abonado
 	//Lo mismo con SacarArticulo

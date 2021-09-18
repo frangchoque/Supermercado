@@ -17,14 +17,15 @@ class cTicket
 	public:
 	cTicket(bool efectivo=true);
 	~cTicket();
-	void CrearArticulo(cItem* Nuevo, unsigned int Cantidad);//Le paso un item y una cantidad para crearlo
-	void SacarArticulo(unsigned int id, unsigned int cantidad);
+	void CrearItem(cItem* Nuevo, unsigned int Cantidad);//Le paso un item y una cantidad para crearlo
+	void SacarItem(unsigned int id, unsigned int cantidad);//le cambie el nombre porque era confuso, ya que agregas un item y no un articulo
 	string to_string();
 	void Imprimir();
 	int getID();
+	bool getAbonado();
+
 	void CalcularMontoTotal(bool Agrego, float Monto);
 	float getMontoTotal();
-
-	bool getAbonado();
+	
 };
 

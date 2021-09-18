@@ -40,9 +40,15 @@ void cCaja::CrearTicket() {
 	return;
 }
 
-cTicket* cCaja::getTicketLista(unsigned int ID)//Para que podamos trabajar con uno en particular
-{
-	return Tickets[Tickets->getCupo()-1];//Revisar la sobrecarga
+cTicket* cCaja::getTicketLista(cTicket*ticket)//Para que podamos trabajar con uno en particular
+{ 
+	cTicket* aux;
+	int pos = Tickets->BuscarID(ticket->getID());//busca en la lista de tickets el ticket con ese ID y devuelve la posicion
+	aux = Tickets->operator[](pos);//retorno el ticket en esa posicion
+	return aux;
+	// eso querias hacer??
+	//return Tickets[Tickets->getCupo()-1];//Revisar la sobrecarga
+	
 }
 
 
@@ -66,10 +72,19 @@ unsigned int cCaja::getID()
 	return ID;
 }
 
-void cCaja::AgregarItem(cItem* Nuevo, unsigned int Cantidad)
+void cCaja::AgregarItem(cTicket* ticket,cItem* Nuevo, unsigned int Cantidad)
 {
 	if (!Abierto)
 		throw new exception("\nLa caja esta cerrada");
-	if()
-	//la caja esté abierta o cerrada y que el ticket no este abonado
+	if (ticket != NULL) {
+		int pos = Tickets->BuscarID(ticket->getID());
+		
+		if (Nuevo != NULL) { 
+			cTicket* aux;
+			if (aux->getAbonado() != true) {
+				aux = Tickets->operator[](pos);
+				aux->CrearItem(Nuevo, Cantidad);
+			}
+		}
+	}
 }
