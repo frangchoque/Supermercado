@@ -175,5 +175,5 @@ string cListaItems::to_string()
 
 ostream& operator<<(ostream& out, const cItem& I)
 {
-	
+	return out;
 }

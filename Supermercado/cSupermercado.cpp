@@ -4,15 +4,22 @@ cSupermercado::cSupermercado() {
 	this->Abierto = true;
 	this->DineroBanco = 1000;
 	this->DineroCajaFuerte = 5000;
-	//Lista_cajas = cListaCajas(Lista_cajas.Tam);
+	Lista_cajas = new cListaCajas();
 }
 
 
 
 cSupermercado::~cSupermercado() {
 
-
-
+	if (Lista_cajas != NULL)
+	{
+		for (int i = 0; i < Lista_cajas->getCupo(); i++)
+		{
+			if ((*Lista_cajas)[i] != NULL)
+				delete (*Lista_cajas)[i];
+		}
+		delete[] Lista_cajas;
+	}
 
 
 }
@@ -28,20 +35,35 @@ void cSupermercado::Abrir() {
 
 
 void cSupermercado::AgregarCaja(cCaja* nueva) {
-	if (nueva != NULL) {
-		cCaja* aux = NULL;
-		aux= Lista_cajas.BuscarIDcaja(nueva->getID());
-		if (aux != NULL) { throw exception("la caja ya existe"); }
-		Lista_cajas.AgregarCaja(nueva);
-		
+	if (nueva == NULL)
+		throw new exception("Error. Puntero cCaja NULL");
+	//Busco la caja
+	cCaja* aux = this->Lista_cajas->BuscarIDcaja(nueva->getID());
+
+	if (aux != NULL)//Si la encuentro
+		throw new exception("La caja ya existe en la lista");
+	try {
+		Lista_cajas->AgregarCaja(nueva);//Controlo la excepcion cuando Cupo>=tam
 	}
+	catch (exception* error)
+	{
+		throw error;
+	}
+
+	//if (nueva != NULL) {
+		//cCaja* aux = NULL;
+//		//aux= Lista_cajas.BuscarIDcaja(nueva->getID());//Revisar
+	//	if (aux != NULL) { throw exception("la caja ya existe"); }
+		//Lista_cajas.AgregarCaja(nueva);
+		
+	//}
 }
 
 
 cCaja* cSupermercado::BuscarCaja(unsigned int ID) {
 	 
 	cCaja* aux = NULL;
-	aux=Lista_cajas.BuscarIDcaja(ID);
+	aux=Lista_cajas->BuscarIDcaja(ID);
 	if (aux == NULL) { throw exception("no se encontro la caja"); }
 	return aux;
 }
@@ -49,7 +71,8 @@ cCaja* cSupermercado::BuscarCaja(unsigned int ID) {
 
 void cSupermercado::Cerrar() {
 
-	if (Abierto == true)Abierto = false;
+	if (Abierto == true)
+		Abierto = false;
 }
 
 
@@ -72,9 +95,13 @@ void cSupermercado::Recolectar() {
 
 void cSupermercado::SacarCaja(cCaja*caja) {
 	
-	if(caja!=NULL)
-		Lista_cajas.Eliminar(caja);
-
+	try {//No reviso que sea NULL porque lo va a hacer en Eliminar
+		Lista_cajas->Eliminar(caja);
+	}
+	catch (exception* error)
+	{
+		throw error;//Relanzo la excepcion
+	}
 }
 
 string cSupermercado::to_string()
@@ -84,4 +111,5 @@ string cSupermercado::to_string()
 
 void cSupermercado::Imprimir()
 {
+	cout << to_string() << endl;
 }

@@ -26,9 +26,10 @@ public:
 	void Imprimir();
 	unsigned int getID();
 	void AgregarItem(cTicket*ticket,cItem* Nuevo, unsigned int Cantidad);
+	void SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad);
 
 	//Crear metodo para agregar items que controle que la caja esté abierta o cerrada y que el ticket no este abonado
 	//Lo mismo con SacarArticulo
-	//Modificar Cerrar para que no pueda hacerlo hast que el último ticket este abonado
+	//Modificar Cerrar para que no pueda hacerlo hasta que el último ticket este abonado
 };
 

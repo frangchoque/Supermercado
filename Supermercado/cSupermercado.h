@@ -12,7 +12,7 @@ private:
 	bool Abierto;
 	float DineroBanco;
 	float DineroCajaFuerte;
-	cListaCajas Lista_cajas;
+	cListaCajas* Lista_cajas;
 
 public:
 	cSupermercado();

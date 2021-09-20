@@ -18,6 +18,5 @@ public:
 	unsigned int getCantidad();
 	float getPrecio();
 	void setCantArticulo(unsigned int cant);
-	 
 };
 

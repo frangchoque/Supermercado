@@ -1,4 +1,5 @@
 #include "cTicket.h"
+#define _CRT_SECURE_NO_WARNINGS
 
 cTicket::cTicket(bool efectivo):ID(Contador)
 {
@@ -21,7 +22,7 @@ cTicket::~cTicket() {
 
 void cTicket::CrearItem(cItem* Nuevo, unsigned int Cantidad) {
     Items->Agregar(Nuevo,Cantidad);
-    (*Items)[Items->getCA() - 1]->setCantidad(Cantidad);
+    (*Items)[Items->getCA() - 1]->setCantidad(Cantidad);//Si es una nueva cantidad
     CalcularMontoTotal(true, (*Items)[Items->getCA() - 1]->getPrecio());
 }
 
