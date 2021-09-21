@@ -49,5 +49,10 @@ void cItem::setCantArticulo(unsigned int cant)
     Cantidad = Cantidad + cant;
 }
 
+cArticulo* cItem::getArticulo()
+{
+    return Articulo;
+}
+
 
 

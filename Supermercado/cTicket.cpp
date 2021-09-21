@@ -1,5 +1,6 @@
-#include "cTicket.h"
 #define _CRT_SECURE_NO_WARNINGS
+#include "cTicket.h"
+
 
 cTicket::cTicket(bool efectivo):ID(Contador)
 {
@@ -66,4 +67,14 @@ float cTicket::getMontoTotal()
 bool cTicket::getAbonado()
 {
     return Abonado;
+}
+
+void cTicket::setAbonado()
+{
+    Abonado = true;
+}
+
+bool cTicket::getEfectivo()
+{
+    return Efectivo;
 }

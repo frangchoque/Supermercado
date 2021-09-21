@@ -76,20 +76,39 @@ void cSupermercado::Cerrar() {
 }
 
 
-string cSupermercado::MejorCajaGanancias(tm Fecha) {
-
-	
+string cSupermercado::MejorCajaGanancias(tm Fecha) {//Revisar por que le paso una fecha
+	cCaja* aux = (*Lista_cajas)[0];
+	float maximo = (*Lista_cajas)[0]->getGanancia();
+	for (int i = 1; i < Lista_cajas->getCupo(); i++)
+	{
+		if (maximo < (*Lista_cajas)[i]->getGanancia())
+		{
+			aux = (*Lista_cajas)[i];
+			maximo = (*Lista_cajas)[i]->getGanancia();
+		}
+	}
+	return aux->to_string();
 }
 
 
 string cSupermercado::MejorCajaTickets(tm Fecha) {
-
+	cCaja* aux = (*Lista_cajas)[0];
+	unsigned int maximo = (*Lista_cajas)[0]->getCantTickets();
+	for (int i = 1; i < Lista_cajas->getCupo(); i++)
+	{
+		if (maximo < (*Lista_cajas)[i]->getCantTickets())
+		{
+			aux = (*Lista_cajas)[i];
+			maximo = (*Lista_cajas)[i]->getCantTickets();
+		}
+	}
+	return aux->to_string();
 	
 }
 
 
 void cSupermercado::Recolectar() {
-
+	//Que ponga Dineroreacudado en 0
 }
 
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "cCaja.h"
-#define N 50
+#define N 20
 
 using namespace std;
 
@@ -12,7 +12,7 @@ class cListaCajas
 	cCaja** cajas;
 
 public:
-	cListaCajas(int tam=50);
+	cListaCajas(int tam=N);
 	cCaja* operator[](unsigned int pos);
 	cCaja* Buscar_por_Pos(unsigned int pos);
 	cCaja* BuscarIDcaja(unsigned int id);

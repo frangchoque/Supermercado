@@ -21,29 +21,40 @@ void cCaja::Abrir() {
 }
 
 
-float cCaja::CalcularGanancia() {
-
-	return 0;//¿Como? si solo tenemos dinero recaudado
+void cCaja::CalcularGanancia() {
+	for (int i = 0; i < Tickets->getCupo(); i++)
+	{
+		if ((*Tickets)[i]->getEfectivo())
+		{
+			DineroenCaja += (*Tickets)[i]->getMontoTotal();
+		}
+		else
+		{
+			DineroRecaudado += (*Tickets)[i]->getMontoTotal();
+		}
+	}
 }
 
 
 void cCaja::Cerrar() {
 	Abierto = false;
+	DineroenCaja = 0;
+	DineroRecaudado = 0;
 }
 
 
-void cCaja::CrearTicket() {
+void cCaja::CrearTicket(bool Efectivo) {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
-	cTicket* aux = new cTicket();
+	cTicket* aux = new cTicket(Efectivo);
 	Tickets->AgregarTicket(aux);
 	return;
 }
 
-cTicket* cCaja::getTicketLista(cTicket*ticket)//Para que podamos trabajar con uno en particular
+cTicket* cCaja::getTicketLista(unsigned int id)//Para que podamos trabajar con uno en particular
 { 
 	//cTicket* aux=new cTicket;
-	int pos = Tickets->BuscarID(ticket->getID());//busca en la lista de tickets el ticket con ese ID y devuelve la posicion
+	int pos = Tickets->BuscarID(id);//busca en la lista de tickets el ticket con ese ID y devuelve la posicion
 	if (pos == -1)
 		throw new exception("No se encontro el ticket");
 
@@ -53,10 +64,12 @@ cTicket* cCaja::getTicketLista(cTicket*ticket)//Para que podamos trabajar con un
 }
 
 
-void cCaja::EmitirTicket() {
+void cCaja::EmitirTicket(cTicket* ticket) {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
-
+	if(Tickets->BuscarID(ticket->getID())==-1)
+		throw new exception("El ticket no pertenece a la caja");
+	ticket->setAbonado();
 }
 
 string cCaja::to_string()
@@ -125,4 +138,14 @@ void cCaja::SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad)
 		throw new exception("El ticket no corresponde a esta caja");
 
 	(*Tickets)[pos]->SacarItem(Eliminado->getArticuloID(), Cantidad);//Si llego hasta aca, debe funcionar
+}
+
+float cCaja::getGanancia()
+{
+	return DineroenCaja+DineroRecaudado;
+}
+
+unsigned int cCaja::getCantTickets()
+{
+	return Tickets->getCupo();
 }

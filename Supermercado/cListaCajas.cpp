@@ -101,6 +101,7 @@ cCaja* cListaCajas::BuscarIDcaja(unsigned int id)
 		if (cajas[i]->getID() == id) { return cajas[i]; }
 		else return NULL;//no se encontro 
 	}
+	return NULL;
 }
 
 unsigned int cListaCajas::getCupo()

@@ -23,6 +23,8 @@ class cTicket
 	void Imprimir();
 	int getID();
 	bool getAbonado();
+	void setAbonado();
+	bool getEfectivo();
 
 	void CalcularMontoTotal(bool Agrego, float Monto);
 	float getMontoTotal();
