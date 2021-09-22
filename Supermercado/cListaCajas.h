@@ -23,5 +23,7 @@ public:
 	void Eliminar(cCaja* caja);
 	~cListaCajas();
 	unsigned int getCupo();
+	float getDineroTarjeta(int pos);
+	float getDineroEfectivo(int pos);
 };
 

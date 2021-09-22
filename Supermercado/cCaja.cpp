@@ -7,6 +7,7 @@ cCaja::cCaja(float DineroCaja):ID(Contador)
 	DineroRecaudado = 0;
 	Tickets = new cListaTickets(); 
 	Contador++;
+	DineroTarjeta = 0;
 }
 unsigned int cCaja::Contador = 1;
 
@@ -43,12 +44,12 @@ void cCaja::Cerrar() {
 }
 
 
-void cCaja::CrearTicket(bool Efectivo) {
+cTicket* cCaja::CrearTicket() {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
-	cTicket* aux = new cTicket(Efectivo);
+	cTicket* aux = new cTicket();//la fecha y hora actual se generan automaticamente cuando se crea el ticket
 	Tickets->AgregarTicket(aux);
-	return;
+	return aux ;
 }
 
 cTicket* cCaja::getTicketLista(unsigned int id)//Para que podamos trabajar con uno en particular
@@ -60,16 +61,30 @@ cTicket* cCaja::getTicketLista(unsigned int id)//Para que podamos trabajar con u
 
 	//aux = (*Tickets)[pos];//retorno el ticket en esa posicion
 	return (*Tickets)[pos];
-	// Algo como esto
+	
 }
 
 
-void cCaja::EmitirTicket(cTicket* ticket) {
+void cCaja::EmitirTicket(cTicket* ticket,bool metodopago) {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
 	if(Tickets->BuscarID(ticket->getID())==-1)
 		throw new exception("El ticket no pertenece a la caja");
-	ticket->setAbonado();
+	if (ticket->getAbonado() == true)
+	{
+		throw new exception("El ticket ya esta pago, no se puede emitir");
+	}
+	else {
+		float Monto_a_Pagar = ticket->getMontoTotal();
+		if (metodopago == true) {// es efectivo
+			DineroRecaudado += Monto_a_Pagar;
+			ticket->setAbonado();
+		}
+		else {//es con tarjeta
+			DineroTarjeta += Monto_a_Pagar;
+			ticket->setAbonado();
+		};
+	}
 }
 
 string cCaja::to_string()
@@ -109,14 +124,6 @@ void cCaja::AgregarItem(cTicket* ticket,cItem* Nuevo, unsigned int Cantidad)
 	(*Tickets)[pos]->CrearItem(Nuevo, Cantidad);//Si llego hasta aca, debe funcionar
 		
 
-	//if (Nuevo != NULL) { 
-			//cTicket* aux= new cTicket;
-			//aux = (*Tickets)[pos];
-			//if (aux->getAbonado() != true) {
-				//aux->CrearItem(Nuevo, Cantidad);
-			//}
-	//}
-	//}
 }
 
 void cCaja::SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad)
@@ -149,3 +156,20 @@ unsigned int cCaja::getCantTickets()
 {
 	return Tickets->getCupo();
 }
+
+float cCaja::getDineroTarjeta()
+{
+	return DineroTarjeta;
+}
+
+float cCaja::getDineroRecaudado()
+{
+	return DineroRecaudado;
+}
+
+void cCaja::setDineroRecaudado()
+{
+	DineroRecaudado = 0;
+}
+
+

@@ -108,3 +108,12 @@ unsigned int cListaCajas::getCupo()
 {
 	return Cupo;
 }
+
+float cListaCajas::getDineroTarjeta(int pos) {
+	return cajas[pos]->getDineroTarjeta();
+	
+};
+float cListaCajas::getDineroEfectivo(int pos) {
+	return cajas[pos]->getDineroRecaudado();
+	cajas[pos]->setDineroRecaudado();//pone en 0 a dinero recaudado
+};

@@ -2,13 +2,13 @@
 #include "cTicket.h"
 
 
-cTicket::cTicket(bool efectivo):ID(Contador)
+cTicket::cTicket():ID(Contador)
 {
     time_t now = time(0);
     tm* time = localtime(&now);
     FechayHora = *time;//Asigno la fecha en el instante que creo el ticket
     MontoTotal = 0;
-    Efectivo = efectivo;
+    Efectivo = true;//false es tarjeta
     Items = new cListaItems();
     Abonado = false;
     Contador++;

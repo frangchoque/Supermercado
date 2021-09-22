@@ -50,13 +50,6 @@ void cSupermercado::AgregarCaja(cCaja* nueva) {
 		throw error;
 	}
 
-	//if (nueva != NULL) {
-		//cCaja* aux = NULL;
-//		//aux= Lista_cajas.BuscarIDcaja(nueva->getID());//Revisar
-	//	if (aux != NULL) { throw exception("la caja ya existe"); }
-		//Lista_cajas.AgregarCaja(nueva);
-		
-	//}
 }
 
 
@@ -106,10 +99,17 @@ string cSupermercado::MejorCajaTickets(tm Fecha) {
 	
 }
 
-
-void cSupermercado::Recolectar() {
-	//Que ponga Dineroreacudado en 0
+void cSupermercado::Recolectar()
+{
+	int aux=Lista_cajas->getCupo();
+	for (int i = 0; i < aux; i++) {
+		DineroCajaFuerte+=Lista_cajas->getDineroEfectivo(i);
+		DineroBanco += Lista_cajas->getDineroTarjeta(i);
+	}
 }
+
+
+
 
 
 void cSupermercado::SacarCaja(cCaja*caja) {

@@ -10,8 +10,8 @@ class cSupermercado
 {
 private:
 	bool Abierto;
-	float DineroBanco;
-	float DineroCajaFuerte;
+	float DineroBanco;//dinero de cuando pagan en efectivo
+	float DineroCajaFuerte;//dinero de cuando pagan con tarjeta
 	cListaCajas* Lista_cajas;
 
 public:
@@ -24,7 +24,7 @@ public:
 	void Cerrar();
 	string MejorCajaGanancias(tm Fecha);
 	string MejorCajaTickets(tm Fecha);
-	void Recolectar();
+	void Recolectar(); 
 	void SacarCaja(cCaja*caja);
 	string to_string();
 	void Imprimir();

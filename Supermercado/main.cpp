@@ -9,7 +9,8 @@
 int main() {
 	cArticulo* Queso = new cArticulo("La paulina", "Queso rayado", 249.99);
 	cItem* Compra = new cItem(2, Queso);
-	cTicket* pCompra = NULL;
+	cTicket* pCompra1 = NULL;
+	cTicket* pCompra2 = NULL;
 	cCaja* pCaja = new cCaja(5000);
 	cSupermercado* Kiosko = new cSupermercado();
 
@@ -32,7 +33,7 @@ int main() {
 	Kiosko->Cerrar();
 	try
 	{
-		pCaja->CrearTicket(true);//No debe funcionar
+		pCompra1=pCaja->CrearTicket();//No debe funcionar
 	}
 	catch (exception* error)
 	{
@@ -41,7 +42,7 @@ int main() {
 	}
 	try
 	{
-		pCaja->EmitirTicket(pCompra);//No debe funcionar
+		pCaja->EmitirTicket(pCompra1,true);//No debe funcionar
 	}
 	catch (exception* error)
 	{
@@ -53,7 +54,7 @@ int main() {
 
 	try
 	{
-		pCaja->CrearTicket(true);//Creo un ticket
+		pCompra2=pCaja->CrearTicket();//Creo un ticket
 	}
 	catch (exception* error)
 	{
@@ -61,10 +62,10 @@ int main() {
 		delete error;
 	}
 
-	pCompra = pCaja->getTicketLista(1);//Lo asigno a un puntero para que sea mas facil trabajar
+	pCompra2 = pCaja->getTicketLista(1);//Lo asigno a un puntero para que sea mas facil trabajar
 
 	try {
-		pCompra->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
+		pCompra2->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
 	catch (exception* error)
 	{
@@ -72,10 +73,10 @@ int main() {
 		delete error;
 	}
 
-	Compra = NULL;
+	pCompra1 = NULL;
 
 	try {
-		pCompra->CrearItem(Compra, Compra->getCantidad());//Tiene que tirar error
+		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que tirar error
 	}
 	catch (exception* error)
 	{
@@ -83,7 +84,7 @@ int main() {
 		delete error;
 	}
 	try {
-		pCompra->SacarItem(20,0);//Tiene que tirar error
+		pCompra1->SacarItem(20,0);//Tiene que tirar error
 	}
 	catch (exception* error)
 	{
@@ -92,7 +93,7 @@ int main() {
 	}
 	Compra = new cItem(3, new cArticulo("ABC", "Cuaderno", 499.99));
 	try {
-		pCompra->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
+		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
 	catch (exception* error)
 	{
@@ -100,7 +101,7 @@ int main() {
 		delete error;
 	}
 	try {
-		pCompra->SacarItem(Compra->getArticuloID(), Compra->getCantidad());//Funciona
+		pCompra1->SacarItem(Compra->getArticuloID(), Compra->getCantidad());//Funciona
 	}//Cuando lo saco, lo elimino
 	catch (exception* error)
 	{
@@ -110,7 +111,7 @@ int main() {
 	//Creo otro item
 	Compra = new cItem(3, new cArticulo("ABC", "Libro", 799.99));
 	try {
-		pCompra->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
+		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
 	catch (exception* error)
 	{
@@ -120,7 +121,7 @@ int main() {
 
 	try
 	{
-		pCaja->EmitirTicket(pCompra);//Funciona
+		pCaja->EmitirTicket(pCompra1,false);//Funciona
 	}
 	catch (exception* error)
 	{
@@ -130,11 +131,13 @@ int main() {
 	
 
 
-	pCompra->Imprimir();
+	pCompra1->Imprimir();
+	pCompra2->Imprimir();
 	Queso->Imprimir();
 	Compra->Imprimir();
 
 	delete Queso;
-	delete Compra;
+	delete pCompra1;
+	delete pCompra2;
 	return 0;
 }
