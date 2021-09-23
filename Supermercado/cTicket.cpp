@@ -2,7 +2,7 @@
 #include "cTicket.h"
 
 
-cTicket::cTicket():ID(Contador)
+cTicket::cTicket(bool efectivo):ID(Contador)
 {
     time_t now = time(0);
     tm* time = localtime(&now);

@@ -20,7 +20,7 @@ public:
 	void Abrir();
 	void CalcularGanancia();//La uso para calcular al final de la compra
 	void Cerrar();
-	cTicket* CrearTicket();// crea un ticket con fecha y hora actual, lo agrega a la lista y lo devuelve 
+	cTicket* CrearTicket(bool efectivo=true);// crea un ticket con fecha y hora actual, lo agrega a la lista y lo devuelve 
 	cTicket* getTicketLista(unsigned int id);
 	void EmitirTicket(cTicket* ticket,bool metodopago);
 	string to_string();

@@ -15,7 +15,7 @@ class cTicket
 	static unsigned int Contador;
 	
 	public:
-	cTicket();
+	cTicket(bool efectivo=true);
 	~cTicket();
 	void CrearItem(cItem* Nuevo, unsigned int Cantidad);//Le paso un item y una cantidad para crearlo
 	void SacarItem(unsigned int id, unsigned int cantidad);//le cambie el nombre porque era confuso, ya que agregas un item y no un articulo

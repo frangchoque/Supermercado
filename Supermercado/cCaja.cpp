@@ -44,10 +44,10 @@ void cCaja::Cerrar() {
 }
 
 
-cTicket* cCaja::CrearTicket() {
+cTicket* cCaja::CrearTicket(bool efectivo) {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
-	cTicket* aux = new cTicket();//la fecha y hora actual se generan automaticamente cuando se crea el ticket
+	cTicket* aux = new cTicket(efectivo);//la fecha y hora actual se generan automaticamente cuando se crea el ticket
 	Tickets->AgregarTicket(aux);
 	return aux ;
 }
