@@ -8,7 +8,7 @@
 
 int main() {
 	cArticulo* Queso = new cArticulo("La paulina", "Queso rayado", 249.99);
-	cItem* Compra = new cItem(2, Queso);
+	cItem* Compra = new cItem(2, Queso);//Borar los items una vez usados. Agregar constructor por copia de cArticulo
 	cTicket* pCompra1 = NULL;
 	cTicket* pCompra2 = NULL;
 	cCaja* pCaja = new cCaja(5000);
@@ -54,7 +54,7 @@ int main() {
 
 	try
 	{
-		pCompra2=pCaja->CrearTicket();//Creo un ticket
+		pCompra2=pCaja->CrearTicket();//Creo un ticket y lo asigno a pCompra2 para trabajar mas facil
 	}
 	catch (exception* error)
 	{
@@ -62,7 +62,7 @@ int main() {
 		delete error;
 	}
 
-	pCompra2 = pCaja->getTicketLista(1);//Lo asigno a un puntero para que sea mas facil trabajar
+	//pCompra2 = pCaja->getTicketLista(1);//Lo asigno a un puntero para que sea mas facil trabajar
 
 	try {
 		pCompra2->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
@@ -73,7 +73,7 @@ int main() {
 		delete error;
 	}
 
-	pCompra1 = NULL;
+	pCompra1 = pCompra2;
 
 	try {
 		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que tirar error
@@ -120,7 +120,7 @@ int main() {
 	}
 
 	try
-	{
+	{//Revisar si pCaja tiene un puntero a ticket
 		pCaja->EmitirTicket(pCompra1,false);//Funciona
 	}
 	catch (exception* error)
