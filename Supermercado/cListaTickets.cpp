@@ -58,7 +58,7 @@ void cListaTickets::AgregarTicket(cTicket* Ticket)
 	if (Ticket != NULL) {
 	
 		if (Tam > Cupo) {
-			ticket[Cupo + 1] = Ticket;//no se porque no lo toma
+			ticket[Cupo] = Ticket;//no se porque no lo toma
 			Cupo++;
 		}
 		if (Cupo > Tam || Cupo == Tam) { throw exception("La lista esta llena"); }

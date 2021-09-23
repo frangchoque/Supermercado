@@ -22,15 +22,21 @@ cTicket::~cTicket() {
 
 
 void cTicket::CrearItem(cItem* Nuevo, unsigned int Cantidad) {
-    Items->Agregar(Nuevo,Cantidad);
-    (*Items)[Items->getCA() - 1]->setCantidad(Cantidad);//Si es una nueva cantidad
-    CalcularMontoTotal(true, (*Items)[Items->getCA() - 1]->getPrecio());
+    try {
+        Items->Agregar(Nuevo, Cantidad);
+    }
+    catch (exception* error)
+    {
+        throw error;
+    }
+    CalcularMontoTotal(true, (*Items)[Items->getCA() - 1]->getPrecio());//Agrego el monto solo si no surge ningun error
 }
 
 
 void cTicket::SacarItem(unsigned int id, unsigned int cantidad) {
+    if(Items->BuscarPosItemCreado(id,cantidad)!=-1)//Reviso que este para poder quitar el monto
+        CalcularMontoTotal(false, (*Items)[Items->getCA() - 1]->getPrecio());
     Items->Eliminar(id, cantidad);
-    CalcularMontoTotal(false, (*Items)[Items->getCA() - 1]->getPrecio());
 }
 
 string cTicket::to_string()
@@ -64,6 +70,11 @@ float cTicket::getMontoTotal()
     return MontoTotal;
 }
 
+void cTicket::operator+(cItem* otro)
+{
+    this->CrearItem(otro, otro->Cantidad);   
+}
+
 bool cTicket::getAbonado()
 {
     return Abonado;
@@ -77,4 +88,10 @@ void cTicket::setAbonado()
 bool cTicket::getEfectivo()
 {
     return Efectivo;
+}
+
+ostream& operator<<(ostream& out, cTicket& T)
+{
+    out << "\nAbonado: " << bool_to_string(T.Abonado) << tm_to_string(T.FechayHora) << "ID: " << T.ID << "\nPago en efectivo: " << bool_to_string(T.Efectivo) << "\nMonto total: " << T.MontoTotal << endl;
+    return out;
 }

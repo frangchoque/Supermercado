@@ -1,13 +1,19 @@
 #include "cArticulo.h"
 
-cArticulo::cArticulo(string Marca, string Nombre, float PrecioUnitario)
+cArticulo::cArticulo(string Marca, string Nombre, float PrecioUnitario):ID(Contador)
 {
     this->Marca = Marca;
     this->Nombre = Nombre;
     this->PrecioUnitario = PrecioUnitario;
-    ID++;
+    Contador++;
 }
-unsigned int cArticulo::ID = 1;
+cArticulo::cArticulo(cArticulo* copia): ID(copia->ID)
+{
+    Marca = copia->Marca;
+    Nombre = copia->Nombre;
+    PrecioUnitario = copia->PrecioUnitario;
+}
+unsigned int cArticulo::Contador = 1;
 
 
 cArticulo::~cArticulo() {

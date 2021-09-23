@@ -6,16 +6,23 @@ cItem::cItem(unsigned int Cantidad, cArticulo* articulo) {
     this->PrecioTotal = Cantidad * articulo->PrecioUnitario;
 }
 
+cItem::cItem(cItem* copia)
+{
+    Cantidad = copia->Cantidad;
+    PrecioTotal = copia->PrecioTotal;
+    Articulo = new cArticulo(copia->Articulo);
+}
+
 
 
 cItem::~cItem() {
-
+    delete Articulo;
 }
 
 string cItem::to_string()
 {
     string aux = Articulo->to_string() + "\nPrecio total: " + std::to_string(PrecioTotal) + "\nCantidad: " + std::to_string(Cantidad);
-    return string();
+    return aux;
 }
 
 void cItem::Imprimir()
@@ -52,6 +59,12 @@ void cItem::setCantArticulo(unsigned int cant)
 cArticulo* cItem::getArticulo()
 {
     return Articulo;
+}
+
+cItem& cItem::operator++()
+{
+    this->setCantidad(++Cantidad);
+    return *this;
 }
 
 

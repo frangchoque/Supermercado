@@ -38,7 +38,7 @@ cItem* cListaItems::operator[](unsigned int pos)
 int cListaItems::BuscarPos(unsigned int ID)
 {
 	int pos=-1, i=0;
-	for (i = 0; i < TAM; i++)
+	for (i = 0; i < CA; i++)
 	{
 		if (this->Lista[i]->getArticuloID() == ID)
 		{
@@ -53,7 +53,7 @@ int cListaItems::BuscarPos(unsigned int ID)
 int cListaItems::BuscarPosItemCreado(unsigned int ID, unsigned int Cantidad)
 {
 	int pos = -1, i = 0;
-	for (i = 0; i < TAM; i++)
+	for (i = 0; i < CA; i++)
 	{
 		if (this->Lista[i]->getArticuloID() == ID&&this->Lista[i]->getCantidad()==Cantidad)
 		{
@@ -74,33 +74,10 @@ void cListaItems::Agregar(cItem* Nuevo,int cantidad)
 	if (CA > TAM || CA == TAM) {
 		Redimensionalizar(); 
 	}
-	Lista[CA] = new cItem(cantidad, Nuevo->getArticulo());
+	Nuevo->setCantidad(cantidad);
+	Lista[CA] = new cItem(Nuevo);
 	CA++;
 
-
-	/*if (Nuevo != NULL) {
-		int encontro = 0;
-		if (TAM > CA) {
-			for (int i = 0; i < CA; i++) {
-				if (Lista[i]->getArticuloID() == Nuevo->getArticuloID()) {
-					
-					encontro = 1;//el articulo ya esta en el ticket 
-				}
-			}
-			if (encontro == 0) {
-				//el articulo no esta en el ticket entonces lo agrego 
-				Lista[CA + 1] = Nuevo;
-				CA++;
-			}
-		}
-		if (CA > TAM || CA == TAM) { throw exception("La lista esta llena"); }
-	}*/
-
-
-
-	//if (CA == TAM)
-	//	Redimensionalizar();
-	//Lista[CA++] = Nuevo;
 	return;
 }
 
@@ -152,7 +129,7 @@ cListaItems::~cListaItems()
 	{
 		for (int i = 0; i < CA; i++)
 		{
-			if (Lista[i] != NULL)
+			if (Lista[i] != NULL)//Revisar los punteros item, en algun punto no reduce CA cuando elimino o borre un puntero que no debia
 				delete Lista[i];
 		}
 		delete[] Lista;

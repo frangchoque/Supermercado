@@ -10,18 +10,7 @@ cSupermercado::cSupermercado() {
 
 
 cSupermercado::~cSupermercado() {
-
-	if (Lista_cajas != NULL)
-	{
-		for (int i = 0; i < Lista_cajas->getCupo(); i++)
-		{
-			if ((*Lista_cajas)[i] != NULL)
-				delete (*Lista_cajas)[i];
-		}
-		delete[] Lista_cajas;
-	}
-
-
+	delete Lista_cajas;
 }
 
 

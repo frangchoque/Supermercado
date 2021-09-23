@@ -14,6 +14,8 @@ int main() {
 	cCaja* pCaja = new cCaja(5000);
 	cSupermercado* Kiosko = new cSupermercado();
 
+	++(*Compra);//Funciona sobracarga pre incremento
+
 	try {
 		Kiosko->AgregarCaja(NULL);//No va a funcionar
 	}
@@ -76,7 +78,7 @@ int main() {
 	pCompra1 = pCompra2;
 
 	try {
-		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que tirar error
+		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
 	catch (exception* error)
 	{
@@ -91,7 +93,9 @@ int main() {
 		cout << error->what() << endl;
 		delete error;
 	}
-	Compra = new cItem(3, new cArticulo("ABC", "Cuaderno", 499.99));
+	delete Compra; //Borro el puntero
+	Compra = NULL;
+	Compra = new cItem(3, new cArticulo("ABC", "Cuaderno", 499.99));//Le asigno un nuevo item
 	try {
 		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
@@ -108,8 +112,12 @@ int main() {
 		cout << error->what() << endl;
 		delete error;
 	}
+
+	delete Compra; //Borro el puntero
+	Compra = NULL;
 	//Creo otro item
 	Compra = new cItem(3, new cArticulo("ABC", "Libro", 799.99));
+
 	try {
 		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
@@ -129,15 +137,18 @@ int main() {
 		delete error;
 	}
 	
+	cout << *pCompra1 << endl;//Funciona sobrecarga <<
 
+//	pCompra1->Imprimir();
+	//pCompra2->Imprimir();
+	//Queso->Imprimir();
 
-	pCompra1->Imprimir();
-	pCompra2->Imprimir();
-	Queso->Imprimir();
 	Compra->Imprimir();
 
+	//delete Queso;
+	//delete pCompra1;
+	//delete pCompra2;
 	delete Queso;
-	delete pCompra1;
-	delete pCompra2;
+	delete Kiosko;//Revisar los punteros item, en algun punto no reduce CA cuando elimino o borre un puntero que no debia
 	return 0;
 }

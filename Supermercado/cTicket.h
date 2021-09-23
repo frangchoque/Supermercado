@@ -29,5 +29,7 @@ class cTicket
 	void CalcularMontoTotal(bool Agrego, float Monto);
 	float getMontoTotal();
 	
+	friend ostream& operator<<(ostream& out, cTicket& T);
+	void operator+(cItem* otro);
 };
 
