@@ -25,8 +25,8 @@ cFecha::cFecha(int d, int m, int a,int h,int min)
 
 string cFecha::tm_to_string()
 {
-	return "\n Fecha: " + std::to_string(fecha.tm_mday) + "/" + std::to_string(fecha.tm_mon + 1) + "/" + std::to_string(fecha.tm_year + 1900);
-	return "Hora: " + std::to_string(fecha.tm_hour) + ":" + std::to_string(fecha.tm_min) + ":" + std::to_string(fecha.tm_sec) + "\n";
+	return "\n Fecha: " + std::to_string(fecha.tm_mday) + "/" + std::to_string(fecha.tm_mon + 1) + "/" + std::to_string(fecha.tm_year + 1900)+
+		"\nHora: " + std::to_string(fecha.tm_hour) + ":" + std::to_string(fecha.tm_min) + ":" + std::to_string(fecha.tm_sec) + "\n";
 }
 
 

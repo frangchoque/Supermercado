@@ -6,7 +6,6 @@
 using namespace std;
 class cFecha
 {
-
 	tm fecha;
 public:
 	//Constructor por default, inicia en la fecha y hora de hoy

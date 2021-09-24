@@ -46,7 +46,7 @@ cCaja* cSupermercado::BuscarCaja(unsigned int ID) {
 	 
 	cCaja* aux = NULL;
 	aux=Lista_cajas->BuscarIDcaja(ID);
-	if (aux == NULL) { throw exception("no se encontro la caja"); }
+	if (aux == NULL) { throw exception("\nNo se encontro la caja"); }
 	return aux;
 }
 
@@ -111,10 +111,10 @@ void cSupermercado::Recolectar()
 	}
 }
 
-void cSupermercado::SacarCaja(cCaja*caja) {
+void cSupermercado::SacarCaja(unsigned int id) {
 	
 	try {//No reviso que sea NULL porque lo va a hacer en Eliminar
-		Lista_cajas->Eliminar(caja);
+		Lista_cajas->Eliminar(id);
 	}
 	catch (exception* error)
 	{

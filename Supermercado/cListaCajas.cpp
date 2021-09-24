@@ -45,10 +45,10 @@ cCaja* cListaCajas::Buscar_por_Pos(unsigned int pos)
 	//Si intenta ingresar un numero mayo a Cupo. Como es unsigned int, no puede ingresar un numero menor a 0
 }
 
-void cListaCajas::Eliminar(cCaja* caja){
+void cListaCajas::Eliminar(unsigned int ID){
 	cCaja* aux = NULL;
 	try {
-		aux = Quitar(caja->getID());//Reciclo el codigo de Quitar que de paso revisa todos los errores que pueden ocurrir
+		aux = Quitar(ID);//Reciclo el codigo de Quitar que de paso revisa todos los errores que pueden ocurrir
 	}
 	catch (exception* error)
 	{

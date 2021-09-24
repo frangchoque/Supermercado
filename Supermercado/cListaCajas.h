@@ -20,7 +20,7 @@ public:
 	//unsigned int IDcajas(cCaja*caja);
 	void AgregarCaja(cCaja* caja);
 	cCaja* Quitar(unsigned id);
-	void Eliminar(cCaja* caja);
+	void Eliminar(unsigned int ID);
 	~cListaCajas();
 	unsigned int getCupo();
 	float getDineroTarjeta(int pos);

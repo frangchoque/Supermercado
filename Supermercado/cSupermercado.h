@@ -21,7 +21,7 @@ public:
 	void Cerrar();
 	void AgregarCaja(cCaja* nueva);
 	void Recolectar();//transfiero a las cuentas del supermercado todo lo ganado por las cajas
-	void SacarCaja(cCaja* caja);
+	void SacarCaja(unsigned int id);
 	
 	cCaja* BuscarCaja(unsigned int ID);
 	string MejorCajaGanancias(cFecha* Fecha);//devuelve la caja con mejor ganancia en una fecha determinada
