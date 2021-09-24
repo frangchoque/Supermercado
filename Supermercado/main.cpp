@@ -202,7 +202,7 @@ int main() {
 	}
 	try
 	{
-		pCaja->EmitirTicket(pCompra1, false);//¿Por que tiene un bool metodo de pago si eso lo definimos en cTicket?
+		pCaja2->EmitirTicket(pCompra1, false);//¿Por que tiene un bool metodo de pago si eso lo definimos en cTicket?
 	}
 	catch (exception* error)
 	{
@@ -216,7 +216,7 @@ int main() {
 
 	cout << Kiosko->MejorCajaGanancias(Nov18) << endl;
 	cout << Kiosko->MejorCajaTickets(Nov18) << endl;
-	cout << Kiosko->MejorCajaTickets(Marz7) << endl;//Funciona pero hay un error al imprimir
+	cout << Kiosko->MejorCajaTickets(Marz7) << endl;//Funciona pero hay un error al imprimir. Algo falla cuando sumo las ganancias.
 	cout << Kiosko->MejorCajaGanancias(Marz7) << endl;//Falta corregir
 
 
