@@ -24,7 +24,7 @@ int main() {
 	cTicket* pCompra1 = NULL;
 	cTicket* pCompra2 = NULL;
 	cCaja* pCaja = new cCaja(Nov18,5000);
-	cCaja* pCaja2 = new cCaja(Marz7,10000);//La agrego despues
+	cCaja* pCaja2 = new cCaja(Marz7,3000);//La agrego despues
 	cSupermercado* Kiosko = new cSupermercado();
 	
 
@@ -164,6 +164,15 @@ int main() {
 	//sleep_for(2s);//Para que no coincidan las fechas
 	//time = localtime(&now);
 	//tm Fecha2 = *time;
+
+	try {
+		Kiosko->AgregarCaja(pCaja2);//Funciona
+	}
+	catch (exception* error)
+	{
+		cout << error->what() << endl;
+		delete error;
+	}
 	pCaja2->Abrir();//Abro la caja
 
 	try
@@ -182,19 +191,37 @@ int main() {
 	Compra = new cItem(5, new cArticulo("Black & Decker", "Podadora", 2799.99));
 
 	try {
-		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
+		(*pCompra1) + Compra;//Funciona la sobrecarga operator+
+
+		//pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
 	}
 	catch (exception* error)
 	{
 		cout << error->what() << endl;
 		delete error;
 	}
+	try
+	{
+		pCaja->EmitirTicket(pCompra1, false);//¿Por que tiene un bool metodo de pago si eso lo definimos en cTicket?
+	}
+	catch (exception* error)
+	{
+		cout << error->what() << endl;
+		delete error;
+	}
+
 	Kiosko->Imprimir();
+	Kiosko->Recolectar();
+	Kiosko->Imprimir();
+
 	cout << Kiosko->MejorCajaGanancias(Nov18) << endl;
 	cout << Kiosko->MejorCajaTickets(Nov18) << endl;
-	cout << Kiosko->MejorCajaTickets(Marz7) << endl;
-	cout << Kiosko->MejorCajaGanancias(Marz7) << endl;
+	cout << Kiosko->MejorCajaTickets(Marz7) << endl;//Funciona pero hay un error al imprimir
+	cout << Kiosko->MejorCajaGanancias(Marz7) << endl;//Falta corregir
 
+
+	delete Nov18;
+	delete Marz7;
 	delete Compra;
 //	delete Queso;
 	delete Kiosko;
