@@ -13,6 +13,7 @@ private:
 	float DineroRecaudado;//cuanto dinero recauda en un dia, solo efectivo
 	const unsigned int ID;
 	static unsigned int Contador;
+	tm* Fecha;
 	cListaTickets* Tickets;
 public:
 	cCaja(float DineroCaja = 1000);
@@ -33,8 +34,6 @@ public:
 	float getDineroTarjeta();
 	float getDineroRecaudado();
 	void setDineroRecaudado();
-	//Crear metodo para agregar items que controle que la caja esté abierta o cerrada y que el ticket no este abonado
-	//Lo mismo con SacarArticulo
-	//Modificar Cerrar para que no pueda hacerlo hasta que el último ticket este abonado
+	tm* getFecha();
 };
 

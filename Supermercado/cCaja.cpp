@@ -1,7 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "cCaja.h"
 
 cCaja::cCaja(float DineroCaja):ID(Contador)
 {
+	Fecha = { 0 };//No se le va a asignar una fecha hasta que habra la caja
 	Abierto = false;
 	DineroenCaja = DineroCaja;
 	DineroRecaudado = 0;
@@ -18,6 +20,9 @@ cCaja::~cCaja() {
 
 
 void cCaja::Abrir() {
+	time_t now = time(0);
+	tm* time = localtime(&now);
+	Fecha = time;
 	Abierto = true;
 }
 
@@ -171,5 +176,11 @@ void cCaja::setDineroRecaudado()
 {
 	DineroRecaudado = 0;
 }
+
+tm* cCaja::getFecha()
+{
+	return Fecha;
+}
+
 
 

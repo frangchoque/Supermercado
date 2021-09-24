@@ -6,13 +6,22 @@
 #include "cCaja.h"
 #include "cTicket.h"
 
+#include <ctime>
+#include <thread>
+#include <chrono>
+using std::this_thread::sleep_for;
+
 int main() {
 	cArticulo* Queso = new cArticulo("La paulina", "Queso rayado", 249.99);
-	cItem* Compra = new cItem(2, Queso);//Borar los items una vez usados. Agregar constructor por copia de cArticulo
+	cItem* Compra = new cItem(2, Queso);
 	cTicket* pCompra1 = NULL;
 	cTicket* pCompra2 = NULL;
 	cCaja* pCaja = new cCaja(5000);
+	cCaja* pCaja2 = new cCaja(10000);//La agrego despues
 	cSupermercado* Kiosko = new cSupermercado();
+	time_t now = time(0);
+	tm* time = localtime(&now);
+	tm Fecha1 = *time;
 
 	++(*Compra);//Funciona sobracarga pre incremento
 
@@ -51,7 +60,7 @@ int main() {
 		cout << error->what() << endl;
 		delete error;
 	}
-	
+	Kiosko->Abrir();
 	pCaja->Abrir();//Abro la caja
 
 	try
@@ -138,17 +147,50 @@ int main() {
 	}
 	
 	cout << *pCompra1 << endl;//Funciona sobrecarga <<
-
-//	pCompra1->Imprimir();
-	//pCompra2->Imprimir();
-	//Queso->Imprimir();
-
+	cout << "\n\n" << endl;
+	pCompra1->Imprimir();
+	cout << "\n\n" << endl;
+	Queso->Imprimir();
+	cout << "\n\n" << endl;
 	Compra->Imprimir();
 
-	//delete Queso;
-	//delete pCompra1;
-	//delete pCompra2;
-	delete Queso;
-	delete Kiosko;//Revisar los punteros item, en algun punto no reduce CA cuando elimino o borre un puntero que no debia
+	//Simulacion de pCaja2
+
+	sleep_for(2s);//Para que no coincidan las fechas
+	time = localtime(&now);
+	tm Fecha2 = *time;
+	pCaja2->Abrir();//Abro la caja
+
+	try
+	{
+		pCompra1 = pCaja2->CrearTicket();//Funciona
+	}
+	catch (exception* error)
+	{
+		cout << error->what() << endl;
+		delete error;
+	}
+
+	delete Compra; //Borro el puntero
+	Compra = NULL;
+	//Creo otro item
+	Compra = new cItem(5, new cArticulo("Black & Decker", "Podadora", 2799.99));
+
+	try {
+		pCompra1->CrearItem(Compra, Compra->getCantidad());//Tiene que agregarlo
+	}
+	catch (exception* error)
+	{
+		cout << error->what() << endl;
+		delete error;
+	}
+	cout << Kiosko->MejorCajaGanancias(Fecha2) << endl;
+	cout << Kiosko->MejorCajaTickets(Fecha2) << endl;
+	cout << Kiosko->MejorCajaTickets(Fecha1) << endl;
+	cout << Kiosko->MejorCajaGanancias(Fecha1) << endl;
+
+	delete Compra;
+//	delete Queso;
+	delete Kiosko;
 	return 0;
 }
