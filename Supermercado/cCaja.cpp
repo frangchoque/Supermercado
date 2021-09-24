@@ -44,7 +44,7 @@ void cCaja::CalcularGanancia() {
 
 void cCaja::Cerrar() {
 	Abierto = false;
-	DineroenCaja = 0;
+	//DineroenCaja = 0;
 	DineroRecaudado = 0;
 }
 
@@ -70,7 +70,7 @@ cTicket* cCaja::getTicketLista(unsigned int id)//Para que podamos trabajar con u
 }
 
 
-void cCaja::EmitirTicket(cTicket* ticket,bool metodopago) {
+void cCaja::EmitirTicket(cTicket* ticket) {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
 	if(Tickets->BuscarID(ticket->getID())==-1)
@@ -81,7 +81,7 @@ void cCaja::EmitirTicket(cTicket* ticket,bool metodopago) {
 	}
 	else {
 		float Monto_a_Pagar = ticket->getMontoTotal();
-		if (metodopago == true) {// es efectivo
+		if (ticket->getEfectivo()) {// es efectivo
 			DineroRecaudado += Monto_a_Pagar;
 			ticket->setAbonado();
 		}
@@ -156,7 +156,7 @@ void cCaja::SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad)
 
 float cCaja::getGanancia()
 {
-	return (DineroRecaudado+DineroTarjeta)-DineroenCaja;
+	return (DineroRecaudado+DineroTarjeta);
 }
 
 unsigned int cCaja::getCantTickets()
@@ -177,6 +177,11 @@ float cCaja::getDineroRecaudado()
 void cCaja::setDineroRecaudado()
 {
 	DineroRecaudado = 0;
+}
+
+void cCaja::setDineroTarjeta()
+{
+	DineroTarjeta = 0;
 }
 
 cFecha*cCaja::getFecha()

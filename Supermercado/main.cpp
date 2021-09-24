@@ -1,4 +1,3 @@
-//Falta agreagar Imprimir y to_string en las clases
 #define _CRT_SECURE_NO_WARNINGS
 #include "cSupermercado.h"
 #include "cItem.h"
@@ -6,15 +5,8 @@
 #include "cCaja.h"
 #include "cTicket.h"
 #include "cFecha.h"
-#include <ctime>
-#include <thread>
-#include <chrono>
-using std::this_thread::sleep_for;
 
 int main() {
-	/*time_t now = time(0);
-	tm* time = localtime(&now);
-	tm Fecha1 = *time;*/
 	cFecha* hoy = new cFecha();
 	cFecha* Nov18 = new cFecha(18, 11, 2020, 17, 30);
 	cFecha* Marz7 = new cFecha(7, 3, 2021, 9, 0);
@@ -24,7 +16,7 @@ int main() {
 	cTicket* pCompra1 = NULL;
 	cTicket* pCompra2 = NULL;
 	cCaja* pCaja = new cCaja(Nov18,5000);
-	cCaja* pCaja2 = new cCaja(Marz7,3000);//La agrego despues
+	cCaja* pCaja2 = new cCaja(Marz7,3000);//La agrego a Kiosko despues
 	cSupermercado* Kiosko = new cSupermercado();
 	
 
@@ -49,7 +41,7 @@ int main() {
 	Kiosko->Cerrar();
 	try
 	{
-		pCompra1=pCaja->CrearTicket();//No debe funcionar
+		pCompra1=pCaja->CrearTicket(true);//No debe funcionar
 	}
 	catch (exception* error)
 	{
@@ -58,7 +50,7 @@ int main() {
 	}
 	try
 	{
-		pCaja->EmitirTicket(pCompra1,true);//No debe funcionar
+		pCaja->EmitirTicket(pCompra1);//No debe funcionar
 	}
 	catch (exception* error)
 	{
@@ -70,7 +62,7 @@ int main() {
 
 	try
 	{
-		pCompra2=pCaja->CrearTicket();//Creo un ticket y lo asigno a pCompra2 para trabajar mas facil
+		pCompra2=pCaja->CrearTicket(true);//Creo un ticket y lo asigno a pCompra2 para trabajar mas facil
 	}
 	catch (exception* error)
 	{
@@ -143,7 +135,7 @@ int main() {
 
 	try
 	{//Revisar si pCaja tiene un puntero a ticket
-		pCaja->EmitirTicket(pCompra1,false);//Funciona
+		pCaja->EmitirTicket(pCompra1);//Funciona
 	}
 	catch (exception* error)
 	{
@@ -177,7 +169,7 @@ int main() {
 
 	try
 	{
-		pCompra1 = pCaja2->CrearTicket();//Funciona
+		pCompra1 = pCaja2->CrearTicket(false);//Funciona
 	}
 	catch (exception* error)
 	{
@@ -202,7 +194,7 @@ int main() {
 	}
 	try
 	{
-		pCaja2->EmitirTicket(pCompra1, false);//¿Por que tiene un bool metodo de pago si eso lo definimos en cTicket?
+		pCaja2->EmitirTicket(pCompra1);
 	}
 	catch (exception* error)
 	{
@@ -210,15 +202,15 @@ int main() {
 		delete error;
 	}
 
+	cout << Kiosko->MejorCajaGanancias(Nov18) << endl;
+	cout << Kiosko->MejorCajaTickets(Nov18) << endl;
+	cout << Kiosko->MejorCajaTickets(Marz7) << endl;
+	cout << Kiosko->MejorCajaGanancias(Marz7) << endl;
+
 	Kiosko->Imprimir();
 	Kiosko->Recolectar();
 	Kiosko->Imprimir();
-
-	cout << Kiosko->MejorCajaGanancias(Nov18) << endl;
-	cout << Kiosko->MejorCajaTickets(Nov18) << endl;
-	cout << Kiosko->MejorCajaTickets(Marz7) << endl;//Funciona pero hay un error al imprimir. Algo falla cuando sumo las ganancias.
-	cout << Kiosko->MejorCajaGanancias(Marz7) << endl;//Falta corregir
-
+	Kiosko->Cerrar();
 
 	delete Nov18;
 	delete Marz7;

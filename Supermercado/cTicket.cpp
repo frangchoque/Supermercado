@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "cTicket.h"
-
+#include "Auxiliar.h"
 
 cTicket::cTicket(cFecha* fyh,bool efectivo):ID(Contador)
 {
@@ -9,7 +9,7 @@ cTicket::cTicket(cFecha* fyh,bool efectivo):ID(Contador)
     //FechayHora = *time;//Asigno la fecha en el instante que creo el ticket
     FechayHora = fyh;
     MontoTotal = 0;
-    Efectivo = true;//false es tarjeta
+    Efectivo = efectivo;//false es tarjeta
     Items = new cListaItems();
     Abonado = false;
     Contador++;
@@ -42,7 +42,7 @@ void cTicket::SacarItem(unsigned int id, unsigned int cantidad) {
 
 string cTicket::to_string()
 {
-    string aux = FechayHora->tm_to_string()+ "Efectivo: " + std::to_string(Efectivo) + "\nTarjeta: " + std::to_string(!Efectivo) + "\nId: " + std::to_string(ID) +
+    string aux = FechayHora->tm_to_string()+ "\nEfectivo: " + bool_to_string(Efectivo) + "\nTarjeta: " + bool_to_string(!Efectivo) + "\nId: " + std::to_string(ID) +
         "\nMonto total: " + std::to_string(MontoTotal) + Items->to_string() + "\nAbonado: " + std::to_string(Abonado);
     return aux;
 }

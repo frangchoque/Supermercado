@@ -77,7 +77,7 @@ string cSupermercado::MejorCajaGanancias(cFecha* Fecha) {
 	}
 	
 	if (aux == NULL)
-		return "No se encontró ninguna caja";
+		return "\nNo se encontro ninguna caja";
 	else
 		return aux->to_string();//imprimo la mejor caja
 }
@@ -96,7 +96,7 @@ string cSupermercado::MejorCajaTickets(cFecha* Fecha) {
 		}
 	}
 	if (aux == NULL)
-		return "No se encontró ninguna caja";
+		return "\nNo se encontro ninguna caja";
 	else
 		return aux->to_string();
 	

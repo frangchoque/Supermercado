@@ -26,9 +26,9 @@ public:
 	
 	void CalcularGanancia();//La uso para calcular al final de la compra
 	
-	cTicket* CrearTicket(bool efectivo=true);// crea un ticket con fecha y hora actual, lo agrega a la lista y lo devuelve 
+	cTicket* CrearTicket(bool efectivo);// crea un ticket con fecha y hora actual, lo agrega a la lista y lo devuelve 
 	cTicket* getTicketLista(unsigned int id);
-	void EmitirTicket(cTicket* ticket,bool metodopago);
+	void EmitirTicket(cTicket* ticket);
 	void AgregarItem(cTicket* ticket, cItem* Nuevo, unsigned int Cantidad);
 	void SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad);
 	
@@ -41,6 +41,7 @@ public:
 	float getDineroTarjeta();
 	float getDineroRecaudado();
 	void setDineroRecaudado();
+	void setDineroTarjeta();
 	cFecha* getFecha();
 };
 
