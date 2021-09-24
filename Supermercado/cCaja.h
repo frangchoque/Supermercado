@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include "cListaTickets.h"
+#include "Auxiliar.h"
+//#include "cFecha.h"
 using namespace std;
 class cTicket;
 
@@ -13,27 +15,32 @@ private:
 	float DineroRecaudado;//cuanto dinero recauda en un dia, solo efectivo
 	const unsigned int ID;
 	static unsigned int Contador;
-	tm* Fecha;
+	cFecha* Fecha;
 	cListaTickets* Tickets;
 public:
-	cCaja(float DineroCaja = 1000);
+	cCaja(cFecha* fecha,float DineroCaja = 1000);
 	~cCaja();
+	
 	void Abrir();
-	void CalcularGanancia();//La uso para calcular al final de la compra
 	void Cerrar();
+	
+	void CalcularGanancia();//La uso para calcular al final de la compra
+	
 	cTicket* CrearTicket(bool efectivo=true);// crea un ticket con fecha y hora actual, lo agrega a la lista y lo devuelve 
 	cTicket* getTicketLista(unsigned int id);
 	void EmitirTicket(cTicket* ticket,bool metodopago);
+	void AgregarItem(cTicket* ticket, cItem* Nuevo, unsigned int Cantidad);
+	void SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad);
+	
 	string to_string();
 	void Imprimir();
+	
 	unsigned int getID();
-	void AgregarItem(cTicket* ticket,cItem* Nuevo, unsigned int Cantidad);
-	void SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad);
 	float getGanancia();
 	unsigned int getCantTickets();
 	float getDineroTarjeta();
 	float getDineroRecaudado();
 	void setDineroRecaudado();
-	tm* getFecha();
+	cFecha* getFecha();
 };
 

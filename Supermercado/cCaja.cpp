@@ -1,9 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "cCaja.h"
 
-cCaja::cCaja(float DineroCaja):ID(Contador)
+cCaja::cCaja(cFecha* fecha, float DineroCaja):ID(Contador)
 {
-	Fecha = { 0 };//No se le va a asignar una fecha hasta que habra la caja
+	Fecha = fecha;//No se le va a asignar una fecha hasta que habra la caja
 	Abierto = false;
 	DineroenCaja = DineroCaja;
 	DineroRecaudado = 0;
@@ -20,9 +20,9 @@ cCaja::~cCaja() {
 
 
 void cCaja::Abrir() {
-	time_t now = time(0);
+	/*time_t now = time(0);
 	tm* time = localtime(&now);
-	Fecha = time;
+	Fecha = time;*/
 	Abierto = true;
 }
 
@@ -52,7 +52,7 @@ void cCaja::Cerrar() {
 cTicket* cCaja::CrearTicket(bool efectivo) {
 	if (!Abierto)
 		throw new exception("La caja esta cerrada");
-	cTicket* aux = new cTicket(efectivo);//la fecha y hora actual se generan automaticamente cuando se crea el ticket
+	cTicket* aux = new cTicket(Fecha,efectivo);
 	Tickets->AgregarTicket(aux);
 	return aux ;
 }
@@ -92,13 +92,15 @@ void cCaja::EmitirTicket(cTicket* ticket,bool metodopago) {
 	}
 }
 
-string cCaja::to_string()
-{
-	return string();
+string cCaja::to_string() {
+	string informacion = "Caja Numero:" + std::to_string(ID) + "\n Ganancia: " + std::to_string(getGanancia())+" Cantidad de Tickes emitidos: "+ std::to_string(getCantTickets())+ Fecha->tm_to_string();
+	return informacion;
 }
+
 
 void cCaja::Imprimir()
 {
+	cout << to_string();
 }
 
 unsigned int cCaja::getID()
@@ -154,7 +156,7 @@ void cCaja::SacarItem(cTicket* ticket, cItem* Eliminado, unsigned int Cantidad)
 
 float cCaja::getGanancia()
 {
-	return DineroenCaja+DineroRecaudado;
+	return (DineroRecaudado+DineroTarjeta)-DineroenCaja;
 }
 
 unsigned int cCaja::getCantTickets()
@@ -177,7 +179,7 @@ void cCaja::setDineroRecaudado()
 	DineroRecaudado = 0;
 }
 
-tm* cCaja::getFecha()
+cFecha*cCaja::getFecha()
 {
 	return Fecha;
 }

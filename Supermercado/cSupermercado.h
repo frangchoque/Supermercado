@@ -18,13 +18,15 @@ public:
 	~cSupermercado();
 
 	void Abrir();
-	void AgregarCaja(cCaja* nueva);
-	cCaja* BuscarCaja(unsigned int ID);
 	void Cerrar();
-	string MejorCajaGanancias(tm Fecha);
-	string MejorCajaTickets(tm Fecha);
-	void Recolectar();
+	void AgregarCaja(cCaja* nueva);
+	void Recolectar();//transfiero a las cuentas del supermercado todo lo ganado por las cajas
 	void SacarCaja(cCaja* caja);
+	
+	cCaja* BuscarCaja(unsigned int ID);
+	string MejorCajaGanancias(cFecha* Fecha);//devuelve la caja con mejor ganancia en una fecha determinada
+	string MejorCajaTickets(cFecha* Fecha);//devuelve la caja que haya emitido mas tickets
 	string to_string();
+	
 	void Imprimir();
 };

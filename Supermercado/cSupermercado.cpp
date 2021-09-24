@@ -55,6 +55,7 @@ void cSupermercado::Cerrar() {
 
 	if (Abierto == true)
 		Abierto = false;
+	Recolectar();//junto las ganancias de las cajas
 	for (int i = 0; i < Lista_cajas->getCupo(); i++)
 	{
 		(*Lista_cajas)[i]->Cerrar();//Cierro todas las cajas
@@ -62,30 +63,33 @@ void cSupermercado::Cerrar() {
 }
 
 
-string cSupermercado::MejorCajaGanancias(tm Fecha) {
+string cSupermercado::MejorCajaGanancias(cFecha* Fecha) {
 	cCaja* aux = NULL;
 	float maximo = 0;
+	
 	for (int i = 0; i < Lista_cajas->getCupo(); i++)
 	{
-		if (maximo < (*Lista_cajas)[i]->getGanancia() && Fecha == *((*Lista_cajas)[i]->getFecha()))
+		if (maximo < (*Lista_cajas)[i]->getGanancia() && Fecha == ((*Lista_cajas)[i]->getFecha()))
 		{
 			aux = (*Lista_cajas)[i];
 			maximo = (*Lista_cajas)[i]->getGanancia();
 		}
 	}
+	
 	if (aux == NULL)
 		return "No se encontró ninguna caja";
 	else
-		return aux->to_string();
+		return aux->to_string();//imprimo la mejor caja
 }
 
 
-string cSupermercado::MejorCajaTickets(tm Fecha) {
+string cSupermercado::MejorCajaTickets(cFecha* Fecha) {
 	cCaja* aux = NULL;
 	unsigned int maximo = 0;
-	for (int i = 0; i < Lista_cajas->getCupo(); i++)
+	
+	for (int i = 0; i< Lista_cajas->getCupo(); i++)
 	{
-		if (maximo < (*Lista_cajas)[i]->getCantTickets() && Fecha == *((*Lista_cajas)[i]->getFecha()))
+		if (maximo < (*Lista_cajas)[i]->getCantTickets() && Fecha == ((*Lista_cajas)[i]->getFecha()))
 		{
 			aux = (*Lista_cajas)[i];
 			maximo = (*Lista_cajas)[i]->getCantTickets();
@@ -107,10 +111,6 @@ void cSupermercado::Recolectar()
 	}
 }
 
-
-
-
-
 void cSupermercado::SacarCaja(cCaja*caja) {
 	
 	try {//No reviso que sea NULL porque lo va a hacer en Eliminar
@@ -124,7 +124,7 @@ void cSupermercado::SacarCaja(cCaja*caja) {
 
 string cSupermercado::to_string()
 {
-	return string();
+	return "\n Dinero en el banco: " +std::to_string(DineroBanco)+"$" +"\n Dinero en la caja fuerte: "+std::to_string(DineroCajaFuerte)+"$";
 }
 
 void cSupermercado::Imprimir()

@@ -5,23 +5,28 @@
 #include "cArticulo.h"
 #include "cCaja.h"
 #include "cTicket.h"
-
+#include "cFecha.h"
 #include <ctime>
 #include <thread>
 #include <chrono>
 using std::this_thread::sleep_for;
 
 int main() {
+	/*time_t now = time(0);
+	tm* time = localtime(&now);
+	tm Fecha1 = *time;*/
+	cFecha* hoy = new cFecha();
+	cFecha* Nov18 = new cFecha(18, 11, 2020, 17, 30);
+	cFecha* Marz7 = new cFecha(7, 3, 2021, 9, 0);
+
 	cArticulo* Queso = new cArticulo("La paulina", "Queso rayado", 249.99);
 	cItem* Compra = new cItem(2, Queso);
 	cTicket* pCompra1 = NULL;
 	cTicket* pCompra2 = NULL;
-	cCaja* pCaja = new cCaja(5000);
-	cCaja* pCaja2 = new cCaja(10000);//La agrego despues
+	cCaja* pCaja = new cCaja(Nov18,5000);
+	cCaja* pCaja2 = new cCaja(Marz7,10000);//La agrego despues
 	cSupermercado* Kiosko = new cSupermercado();
-	time_t now = time(0);
-	tm* time = localtime(&now);
-	tm Fecha1 = *time;
+	
 
 	++(*Compra);//Funciona sobracarga pre incremento
 
@@ -156,9 +161,9 @@ int main() {
 
 	//Simulacion de pCaja2
 
-	sleep_for(2s);//Para que no coincidan las fechas
-	time = localtime(&now);
-	tm Fecha2 = *time;
+	//sleep_for(2s);//Para que no coincidan las fechas
+	//time = localtime(&now);
+	//tm Fecha2 = *time;
 	pCaja2->Abrir();//Abro la caja
 
 	try
@@ -184,10 +189,11 @@ int main() {
 		cout << error->what() << endl;
 		delete error;
 	}
-	cout << Kiosko->MejorCajaGanancias(Fecha2) << endl;
-	cout << Kiosko->MejorCajaTickets(Fecha2) << endl;
-	cout << Kiosko->MejorCajaTickets(Fecha1) << endl;
-	cout << Kiosko->MejorCajaGanancias(Fecha1) << endl;
+	Kiosko->Imprimir();
+	cout << Kiosko->MejorCajaGanancias(Nov18) << endl;
+	cout << Kiosko->MejorCajaTickets(Nov18) << endl;
+	cout << Kiosko->MejorCajaTickets(Marz7) << endl;
+	cout << Kiosko->MejorCajaGanancias(Marz7) << endl;
 
 	delete Compra;
 //	delete Queso;

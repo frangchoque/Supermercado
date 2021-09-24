@@ -1,13 +1,13 @@
 #pragma once
 #include <ctime>
 #include "cListaItems.h"
-#include "Auxiliar.h"
-
+//#include "Auxiliar.h"
+#include "cFecha.h"
 class cTicket
 {
 	private:
 	bool Efectivo;
-	tm FechayHora;
+	cFecha* FechayHora;
 	const unsigned int ID;
 	float MontoTotal;//cuanto hay que abonar de la compra
 	cListaItems* Items;
@@ -15,12 +15,14 @@ class cTicket
 	static unsigned int Contador;
 	
 	public:
-	cTicket(bool efectivo=true);
+	cTicket(cFecha*fyh,bool efectivo=true);
 	~cTicket();
+	
 	void CrearItem(cItem* Nuevo, unsigned int Cantidad);//Le paso un item y una cantidad para crearlo
 	void SacarItem(unsigned int id, unsigned int cantidad);//le cambie el nombre porque era confuso, ya que agregas un item y no un articulo
 	string to_string();
 	void Imprimir();
+	
 	int getID();
 	bool getAbonado();
 	void setAbonado();

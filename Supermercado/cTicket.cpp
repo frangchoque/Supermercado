@@ -2,11 +2,12 @@
 #include "cTicket.h"
 
 
-cTicket::cTicket(bool efectivo):ID(Contador)
+cTicket::cTicket(cFecha* fyh,bool efectivo):ID(Contador)
 {
-    time_t now = time(0);
-    tm* time = localtime(&now);
-    FechayHora = *time;//Asigno la fecha en el instante que creo el ticket
+    //time_t now = time(0);
+    //tm* time = localtime(&now);
+    //FechayHora = *time;//Asigno la fecha en el instante que creo el ticket
+    FechayHora = fyh;
     MontoTotal = 0;
     Efectivo = true;//false es tarjeta
     Items = new cListaItems();
@@ -41,7 +42,7 @@ void cTicket::SacarItem(unsigned int id, unsigned int cantidad) {
 
 string cTicket::to_string()
 {
-    string aux = tm_to_string(FechayHora) + "Efectivo: " + bool_to_string(Efectivo) + "\nTarjeta: " + bool_to_string(!Efectivo) + "\nId: " + std::to_string(ID) +
+    string aux = FechayHora->tm_to_string()+ "Efectivo: " + std::to_string(Efectivo) + "\nTarjeta: " + std::to_string(!Efectivo) + "\nId: " + std::to_string(ID) +
         "\nMonto total: " + std::to_string(MontoTotal) + Items->to_string() + "\nAbonado: " + std::to_string(Abonado);
     return aux;
 }
@@ -92,6 +93,12 @@ bool cTicket::getEfectivo()
 
 ostream& operator<<(ostream& out, cTicket& T)
 {
-    out << "\nAbonado: " << bool_to_string(T.Abonado) << tm_to_string(T.FechayHora) << "ID: " << T.ID << "\nPago en efectivo: " << bool_to_string(T.Efectivo) << "\nMonto total: " << T.MontoTotal << endl;
+    string algo;
+    string algof;
+    if (T.Abonado == true) { algo = "si"; }
+    else algo = "no";
+    if (T.Efectivo == true) { algof = "si"; }
+    else algof = "no";
+    out << "\nAbonado: " << algo << T.FechayHora->tm_to_string() << " \n ID: " << T.ID << "\nPago en efectivo: " << algof << "\nMonto total: " << T.MontoTotal << endl;
     return out;
 }
